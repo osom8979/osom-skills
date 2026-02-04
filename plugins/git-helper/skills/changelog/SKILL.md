@@ -1,10 +1,20 @@
 ---
-description: 커밋 히스토리를 기반으로 변경 로그를 생성합니다
+name: changelog
+description: |
+  Git 커밋 히스토리를 분석하여 CHANGELOG를 생성하거나 업데이트합니다.
+  Conventional Commits 형식에 따라 변경사항을 분류합니다.
+argument-hint: "[버전 번호 (선택)]"
+disable-model-invocation: true
+allowed-tools: Bash(git tag *), Bash(git log *), Read, Write
 ---
 
 # 변경 로그 생성
 
 Git 커밋 히스토리를 분석하여 CHANGELOG를 생성하거나 업데이트합니다.
+
+## 버전 정보
+
+버전 번호: $ARGUMENTS (제공된 경우 해당 버전으로 생성, 없으면 [Unreleased] 사용)
 
 ## 지시사항
 

@@ -1,10 +1,22 @@
 ---
-description: Git 브랜치를 관리합니다
+name: branch
+description: |
+  Git 브랜치를 생성, 전환, 삭제하는 등 브랜치를 관리합니다.
+  지원하는 동작: create, checkout, delete, list, merge
+argument-hint: "[action] [branch-name]"
+disable-model-invocation: true
+allowed-tools: Bash(git branch *), Bash(git checkout *), Bash(git switch *), Bash(git push *)
 ---
 
 # 브랜치 관리
 
 브랜치 생성, 전환, 삭제 등 브랜치 관련 작업을 수행합니다.
+
+## 인자 정보
+
+- 전체 인자: $ARGUMENTS
+- 동작(action): 사용자 요청에서 파악 (create, checkout, delete, list, merge)
+- 브랜치 이름: 사용자 요청에서 파악
 
 ## 지시사항
 

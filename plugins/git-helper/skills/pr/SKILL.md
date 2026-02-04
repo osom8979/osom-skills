@@ -1,5 +1,10 @@
 ---
-description: Pull Request를 생성합니다
+name: pr
+description: |
+  현재 브랜치의 변경 사항을 분석하여 Pull Request를 생성합니다.
+  GitHub CLI(gh)가 설치되어 있어야 합니다.
+disable-model-invocation: true
+allowed-tools: Bash(git *), Bash(gh pr *)
 ---
 
 # Pull Request 생성

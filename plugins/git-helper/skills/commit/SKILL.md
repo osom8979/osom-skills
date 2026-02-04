@@ -1,6 +1,11 @@
 ---
-description: commit-message-generator 에이전트를 사용하여 git 커밋을 생성합니다
-argument-hint: [추가 설명]
+name: commit
+description: |
+  Conventional Commits 명세를 따르는 커밋 메시지를 생성합니다.
+  커밋할 변경사항이 이미 git add로 스테이징되어 있어야 합니다.
+argument-hint: "[추가 컨텍스트 (선택)]"
+disable-model-invocation: true
+allowed-tools: Bash(git diff --cached), Bash(git log --oneline *), Bash(git commit *)
 ---
 
 # Git Commit
