@@ -1,0 +1,19 @@
+{
+  "name": "osom-plugins",
+  "owner": {
+    "name": "osom8979",
+    "email": "osom8979@gmail.com"
+  },
+  "metadata": {
+    "description": "Open Source Open Mind - Claude Code Plugin Marketplace",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "git-helper",
+      "source": "git-helper",
+      "description": "Git 버전 관리를 위한 도구 모음"
+    }
+  ]
+}

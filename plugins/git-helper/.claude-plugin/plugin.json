@@ -1,0 +1,6 @@
+{
+  "name": "git-helper",
+  "description": "Git 버전 관리를 위한 도구 모음",
+  "version": "1.0.0",
+  "keywords": ["git", "version-control", "vcs", "commit", "pr", "changelog"]
+}
