@@ -19,9 +19,9 @@ claude plugin install --all --marketplace osom8979/claude-code-marketplace
 ### 개별 플러그인 제거
 
 ```bash
-claude plugin remove translator
-claude plugin remove git-helper
-claude plugin remove geek-to-mediawiki
+claude plugin remove translator@osom-plugins
+claude plugin remove git-helper@osom-plugins
+claude plugin remove geek-to-mediawiki@osom-plugins
 ```
 
 ### 마켓플레이스 제거
@@ -29,7 +29,7 @@ claude plugin remove geek-to-mediawiki
 마켓플레이스와 해당 플러그인을 모두 제거합니다:
 
 ```bash
-claude plugin marketplace remove osom8979/claude-code-marketplace
+claude plugin marketplace remove osom-plugins
 ```
 
 ## 업데이트
@@ -39,7 +39,7 @@ claude plugin marketplace remove osom8979/claude-code-marketplace
 ### 마켓플레이스 업데이트
 
 ```bash
-claude plugin marketplace update osom8979/claude-code-marketplace
+claude plugin marketplace update osom-plugins
 ```
 
 ### 개별 플러그인 업데이트
@@ -47,9 +47,9 @@ claude plugin marketplace update osom8979/claude-code-marketplace
 특정 플러그인만 업데이트할 수 있습니다:
 
 ```bash
-claude plugin update translator
-claude plugin update git-helper
-claude plugin update geek-to-mediawiki
+claude plugin update translator@osom-plugins
+claude plugin update git-helper@osom-plugins
+claude plugin update geek-to-mediawiki@osom-plugins
 ```
 
 ### 전체 플러그인 일괄 업데이트
