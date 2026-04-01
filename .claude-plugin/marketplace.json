@@ -37,6 +37,20 @@
       "repository": "https://github.com/osom8979/claude-code-marketplace",
       "license": "MIT",
       "keywords": ["translate", "translation", "i18n", "l10n", "localization", "internationalization", "language"]
+    },
+    {
+      "name": "geek-to-mediawiki",
+      "source": "./plugins/geek-to-mediawiki",
+      "description": "GeekNews 뉴스를 MediaWiki 페이지 포맷으로 변환하는 도구",
+      "version": "1.0.0",
+      "author": {
+        "name": "osom8979",
+        "email": "osom8979@gmail.com"
+      },
+      "homepage": "https://github.com/osom8979/claude-code-marketplace/tree/main/plugins/geek-to-mediawiki",
+      "repository": "https://github.com/osom8979/claude-code-marketplace",
+      "license": "MIT",
+      "keywords": ["geeknews", "mediawiki", "wiki", "news", "hada", "converter"]
     }
   ]
 }
