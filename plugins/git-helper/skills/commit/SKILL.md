@@ -5,7 +5,7 @@ description: |
   커밋할 변경사항이 이미 git add로 스테이징되어 있어야 합니다.
 argument-hint: "[추가 컨텍스트 (선택)]"
 disable-model-invocation: true
-allowed-tools: Bash(git diff --cached), Bash(git log --oneline *), Bash(git commit *)
+allowed-tools: Bash(git diff --cached), Bash(git log --oneline *), Bash(git log -1), Bash(git commit *)
 ---
 
 # Git Commit
@@ -41,7 +41,9 @@ allowed-tools: Bash(git diff --cached), Bash(git log --oneline *), Bash(git comm
    - build: 빌드 시스템 또는 외부 의존성 변경
    - perf: 성능 개선
 
-6. **품질 가이드라인**:
+6. **커밋 메시지는 반드시 영문으로 작성**: 제목과 본문 모두 영문으로만 작성합니다. 한국어, 일본어, 중국어 등 비영어 문자를 절대 포함하지 않습니다.
+
+7. **품질 가이드라인**:
    - 구체적이되 간결하게
    - "update stuff"나 "fix things" 같은 일반적인 표현 피하기
    - 무엇이 변경되었는지에 집중 (왜 변경했는지는 필요시 본문에)
@@ -66,4 +68,4 @@ allowed-tools: Bash(git diff --cached), Bash(git log --oneline *), Bash(git comm
 에이전트는 다음을 **절대 사용해서는 안 됩니다**:
 - `git add *` - 파일 추가는 허용되지 않음
 
-**중요**: `git commit` 명령을 성공적으로 실행한 후에는 추가 코멘트, 설명, 상태 업데이트 없이 즉시 응답을 종료합니다. 수행한 작업을 확인하는 데 토큰을 낭비하지 마세요 - git commit 출력이 스스로를 대변합니다.
+**중요**: `git commit` 명령을 성공적으로 실행한 후, `git log -1`로 커밋 메시지가 영문인지 확인합니다. 비영어 문자(한국어, 일본어, 중국어 등)가 포함되어 있으면 즉시 `git commit --amend`로 영문 메시지로 수정합니다. 확인 완료 후에는 로그 메시지를 한글로 번역하여 출력합니다.
