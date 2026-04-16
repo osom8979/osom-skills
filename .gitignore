@@ -28,6 +28,8 @@ logs/
 tmp/
 temp/
 skills-evaluation-workspace/
+.agents/
+.claude/
 
 # Python
 __pycache__
