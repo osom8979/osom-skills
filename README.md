@@ -1,115 +1,71 @@
-# osom-plugins
+# osom-skills
 
-OSOM 의 Claude Code 플러그인 마켓플레이스입니다.
+이 저장소는 AI 에이전트 CLI 환경에서 생산성을 높여주는 유용한 에이전트 스킬(Agent Skills) 모음집입니다.
 
-## 설치
+## 🚀 시작하기
 
-```bash
-claude plugin marketplace add osom8979/claude-code-marketplace
-```
+`npx skills` 도구를 사용하여 이 저장소의 스킬을 간편하게 관리할 수 있습니다.
 
-마켓플레이스의 모든 플러그인을 한 번에 설치합니다:
+### 설치 및 추가
 
-```bash
-claude plugin install --all --marketplace osom8979/claude-code-marketplace
-```
-
-## 제거
-
-### 개별 플러그인 제거
+저장소 전체 또는 특정 스킬만 선택하여 설치할 수 있습니다.
 
 ```bash
-claude plugin remove translator@osom-plugins
-claude plugin remove git-helper@osom-plugins
-claude plugin remove geek-to-mediawiki@osom-plugins
+# 모든 스킬 설치 (프로젝트 레벨)
+npx skills add osom8979/osom-skills --all
+
+# 특정 스킬만 설치 (예: git-commit)
+npx skills add osom8979/osom-skills --skill git-commit
+
+# 전역(Global)으로 설치하고 싶은 경우 -g 옵션 추가
+npx skills add osom8979/osom-skills --skill git-commit -g
 ```
 
-### 마켓플레이스 제거
+### 업데이트
 
-마켓플레이스와 해당 플러그인을 모두 제거합니다:
+설치된 스킬을 최신 버전으로 업데이트합니다.
 
 ```bash
-claude plugin marketplace remove osom-plugins
+# 프로젝트 스킬 업데이트
+npx skills update
+
+# 전역 스킬 업데이트
+npx skills update -g
 ```
 
-## 업데이트
-
-이미 마켓플레이스 및 플러그인이 설치된 환경에서 최신 버전으로 업데이트하려면:
-
-### 마켓플레이스 업데이트
+### 목록 확인 및 복원
 
 ```bash
-claude plugin marketplace update osom-plugins
+# 설치된 스킬 목록 확인
+npx skills list
+
+# skills-lock.json에서 스킬 복원 (프로젝트 단위)
+npx skills experimental_install
 ```
 
-### 개별 플러그인 업데이트
-
-특정 플러그인만 업데이트할 수 있습니다:
+### 삭제
 
 ```bash
-claude plugin update translator@osom-plugins
-claude plugin update git-helper@osom-plugins
-claude plugin update geek-to-mediawiki@osom-plugins
+# 스킬 삭제 (인터랙티브 모드)
+npx skills remove
 ```
 
-### 전체 플러그인 일괄 업데이트
+## 🛠️ 제공하는 스킬 목록
 
-설치된 모든 플러그인을 한 번에 업데이트합니다:
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`git-commit`](./skills/git-commit/SKILL.md) | Conventional Commits 명세를 따르는 전문적인 영문 커밋 메시지 자동 생성 및 한국어 번역 제공 | git, commit, conventional commits |
+| [`git-branch`](./skills/git-branch/SKILL.md) | 명명 규칙(feature/, fix/ 등)을 준수하는 Git 브랜치 생성, 전환, 삭제 및 정리 | git, branch, checkout, merge |
+| [`git-changelog`](./skills/git-changelog/SKILL.md) | 커밋 히스토리를 분석하여 최신 정보가 상단에 위치하는 `CHANGELOG.md` 자동 생성 | git, changelog, version control |
+| [`geek-to-mediawiki`](./skills/geek-to-mediawiki/SKILL.md) | [GeekNews](https://news.hada.io/) 페이지 내용을 분석하여 MediaWiki 문법으로 즉시 변환 | geeknews, mediawiki, wiki, converter |
 
-```bash
-claude plugin update --all
-```
+## 🧪 스킬 개발 및 테스트
 
-## 확인
+이 저장소에는 스킬을 체계적으로 만들고 검증할 수 있는 개발 도구가 포함되어 있습니다.
 
-### 마켓플레이스 설치 확인
+- **Skill Creator**: `.agents/skills/skill-creator/`에 위치하며, 새로운 스킬의 드래프트 작성, 테스트 케이스 실행 및 벤치마크 분석을 도와줍니다.
+- **테스트 환경**: `skills-evaluation-workspace/`를 통해 실제 환경에서의 동작을 사전에 검증합니다.
 
-등록된 마켓플레이스 목록을 확인합니다:
+## 📄 라이선스
 
-```bash
-claude plugin marketplace list
-```
-
-### 설치된 플러그인 확인
-
-현재 설치된 플러그인 목록과 버전을 확인합니다:
-
-```bash
-claude plugin list
-```
-
-### 개별 플러그인 상세 정보
-
-특정 플러그인의 상세 정보를 확인합니다:
-
-```bash
-claude plugin info translator
-```
-
-## 플러그인 목록
-
-| 이름 | 설명 | 버전 |
-|------|------|------|
-| [git-helper](./plugins/git-helper) | Git 버전 관리를 위한 도구 모음 | 1.0.0 |
-| [translator](./plugins/translator) | 다국어 번역 및 국제화(i18n) 지원 도구 모음 | 1.0.0 |
-| [geek-to-mediawiki](./plugins/geek-to-mediawiki) | GeekNews 뉴스를 MediaWiki 페이지 포맷으로 변환 | 1.0.0 |
-
-## 플러그인 구조
-
-각 플러그인은 다음 구조를 따릅니다:
-
-```
-plugins/plugin-name/
-├── .claude-plugin/
-│   └── plugin.json       # 플러그인 매니페스트
-├── skills/               # 슬래시 커맨드
-│   └── command-name/
-│       └── SKILL.md
-├── agents/               # 에이전트 정의
-├── hooks/                # 이벤트 훅
-└── README.md
-```
-
-## 라이선스
-
-MIT
+이 프로젝트는 [MIT](./LICENSE) 라이선스 하에 배포됩니다.
