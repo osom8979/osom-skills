@@ -14,6 +14,9 @@
 # 모든 스킬 설치 (프로젝트 레벨)
 npx skills add osom8979/osom-skills --all
 
+# 전역(Global)으로 모든 스킬 설치 (프로젝트 레벨)
+npx skills add osom8979/osom-skills --all -g
+
 # 특정 스킬만 설치 (예: git-commit)
 npx skills add osom8979/osom-skills --skill git-commit
 
@@ -39,7 +42,7 @@ npx skills update -g
 # 설치된 스킬 목록 확인
 npx skills list
 
-# skills-lock.json에서 스킬 복원 (프로젝트 단위)
+# `skills-lock.json` 에서 스킬 복원 (프로젝트 단위)
 npx skills experimental_install
 ```
 
@@ -50,21 +53,118 @@ npx skills experimental_install
 npx skills remove
 ```
 
+## ⚙️ 프로젝트 설정 파일 `.osom-skills`
+
+개발 파이프라인 스킬(`plan-*`, `develop`, `kickoff`, `code-review` 등)과 역할 스킬(`web-page-builder`, `web-component-builder` 등)은 프로젝트 루트의 `.osom-skills` 파일을 읽어 프로젝트 고유 정보(빌드 명령, 문서 경로, 활성화된 역할, 필수 동반 파일 등)를 파악합니다.
+
+파일이 없으면 합리적인 기본값으로 동작하거나 사용자에게 질문하며, 파일이 있으면 그 값을 **그대로** 사용합니다. 처음 설정할 때는 `/osom-init`을 호출하면 프로젝트 상태(package.json, 디렉토리 구조, 기존 문서)를 감지해 드래프트를 만들어줍니다.
+
+### 파일 위치
+
+```
+<project-root>/.osom-skills
+```
+
+### 파일 포맷 (Markdown)
+
+스킬이 섹션 제목으로 값을 찾으므로, 아래 섹션 이름을 유지하세요. 필요한 섹션만 채우면 되고, 없어도 됩니다.
+
+```markdown
+# .osom-skills — Project configuration for osom-skills
+
+## Commands
+- Build/Check: `npm run check`
+- Typecheck: `npm run typecheck`
+- Test: `npm test`
+- Format: `npm run format`
+- Commit: `/git-commit`
+
+## Project documents
+- Structure doc: `docs/rules/structure.md`
+- Code style doc: `docs/rules/code-style.md`
+- Plans directory: `docs/plans/`
+- Rules directory: `docs/rules/`
+
+## Enabled roles
+- web-page-builder
+- web-component-builder
+- shadcn-manager
+
+## Phase dependency hints
+- shadcn-manager → Phase 1 (no deps)
+- web-component-builder → depends on shadcn-manager
+- web-page-builder → depends on web-component-builder
+
+## Required companion files
+- `components/**/*.tsx`: `.stories.tsx`, `.test.tsx`
+- `pages/**/index.tsx`: `index.stories.tsx`, `index.test.tsx`
+- `hooks/**/*.ts`: `.test.ts`
+
+## Guardrails
+- Never push; commits only
+- Use `./npm`, `./npx`, `./node` wrappers (optional)
+```
+
+각 섹션의 의미는 다음과 같습니다.
+
+| 섹션                         | 용도                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------ |
+| `Commands`                   | 빌드·테스트·커밋 등 스킬이 호출할 명령 매핑                                          |
+| `Project documents`          | 스킬이 참조할 규칙/계획 문서 위치                                                    |
+| `Enabled roles`              | 현재 프로젝트에서 사용할 역할 스킬 목록 (orchestrator의 분배 대상)                   |
+| `Phase dependency hints`     | 역할 간 실행 순서 힌트                                                               |
+| `Required companion files`   | 경로 글롭 → 동반 파일(스토리·테스트 등). `code-review`, `doc-audit`이 누락을 검증     |
+| `Guardrails`                 | 스킬이 지켜야 할 제약 (예: push 금지)                                                |
+
 ## 🛠️ 제공하는 스킬 목록
+
+### Git 관련
 
 | 스킬 이름 | 주요 기능 | 주요 키워드 |
 | :--- | :--- | :--- |
 | [`git-commit`](./skills/git-commit/SKILL.md) | Conventional Commits 명세를 따르는 전문적인 영문 커밋 메시지 자동 생성 및 한국어 번역 제공 | git, commit, conventional commits |
 | [`git-branch`](./skills/git-branch/SKILL.md) | 명명 규칙(feature/, fix/ 등)을 준수하는 Git 브랜치 생성, 전환, 삭제 및 정리 | git, branch, checkout, merge |
 | [`git-changelog`](./skills/git-changelog/SKILL.md) | 커밋 히스토리를 분석하여 최신 정보가 상단에 위치하는 `CHANGELOG.md` 자동 생성 | git, changelog, version control |
-| [`geek-to-mediawiki`](./skills/geek-to-mediawiki/SKILL.md) | [GeekNews](https://news.hada.io/) 페이지 내용을 분석하여 MediaWiki 문법으로 즉시 변환 | geeknews, mediawiki, wiki, converter |
 
-## 🧪 스킬 개발 및 테스트
+### 콘텐츠 변환
 
-이 저장소에는 스킬을 체계적으로 만들고 검증할 수 있는 개발 도구가 포함되어 있습니다.
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`geek-to-mediawiki`](./skills/geek-to-mediawiki/SKILL.md) | [GeekNews](https://news.hada.io/) 페이지 내용을 분석하여 MediaWiki 문법으로 즉시 변환 | geeknews, mediawiki, wiki |
 
-- **Skill Creator**: `.agents/skills/skill-creator/`에 위치하며, 새로운 스킬의 드래프트 작성, 테스트 케이스 실행 및 벤치마크 분석을 도와줍니다.
-- **테스트 환경**: `skills-evaluation-workspace/`를 통해 실제 환경에서의 동작을 사전에 검증합니다.
+### 개발 파이프라인
+
+기능 요청 한 건을 "4관점 기획 → 분업 개발 → 통합 → 리팩토링 → 리뷰 → 커밋" 흐름으로 처리합니다. `.osom-skills` 설정에 따라 프로젝트별로 동작을 맞춥니다.
+
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`plan-ceo`](./skills/plan-ceo/SKILL.md) | 기능 요청을 CEO/비즈니스 관점에서 리뷰 (임팩트·우선순위·MVP 범위) | plan, ceo, business |
+| [`plan-eng`](./skills/plan-eng/SKILL.md) | 기능 요청을 엔지니어링 관점에서 리뷰 (타당성·영향 범위·필요 역할·종속성) | plan, engineering, dependency |
+| [`plan-design`](./skills/plan-design/SKILL.md) | 기능 요청을 디자인/UX 관점에서 리뷰 (플로우·필요 컴포넌트·재사용·접근성) | plan, design, ux |
+| [`plan-dba`](./skills/plan-dba/SKILL.md) | 기능 요청을 DBA 관점에서 리뷰 (스키마·RLS·성능·마이그레이션 안전성) | plan, dba, schema |
+| [`develop`](./skills/develop/SKILL.md) | Phase별 역할 스킬 분배·병렬 실행·빌드 검증 | pipeline, parallel, build |
+| [`integrate`](./skills/integrate/SKILL.md) | 라우트/타입/i18n/설정 등 크로스커팅 파일 정합성 통합 | integration, routes, i18n |
+| [`refactor`](./skills/refactor/SKILL.md) | 변경된 파일의 중복 제거·복잡성 감소·패턴 통일 | refactor, code quality |
+| [`code-review`](./skills/code-review/SKILL.md) | 코드 스타일·필수 파일·빌드·테스트·보안 검증 (PR 리뷰가 아닌 파이프라인 품질 게이트) | qa, gate, review |
+| [`kickoff`](./skills/kickoff/SKILL.md) | Plan → Develop → Integrate → Refactor → Review → Commit 전체 흐름 오케스트레이션 | orchestration, pipeline |
+
+### 프로젝트 거버넌스
+
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`osom-init`](./skills/osom-init/SKILL.md) | 프로젝트 상태를 감지해 `.osom-skills` 설정 파일을 생성·갱신·검증 | osom-skills, init, config, setup |
+| [`doc-audit`](./skills/doc-audit/SKILL.md) | 문서(CLAUDE.md, docs/, 스킬·에이전트 정의)와 실제 코드 상태의 정합성 검증 | audit, docs, consistency |
+| [`rule-manage`](./skills/rule-manage/SKILL.md) | 자연어 요청을 받아 프로젝트 규칙 문서의 적절한 위치에 규칙을 추가/수정/삭제 | rules, governance, docs |
+
+### 역할 템플릿 (개발 파이프라인이 분배하는 작업자 패턴)
+
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`web-page-builder`](./skills/web-page-builder/SKILL.md) | 라우트 페이지와 페이지 전용 하위 컴포넌트 세트(페이지·스토리·테스트) 생성 | react, page, route, web |
+| [`web-component-builder`](./skills/web-component-builder/SKILL.md) | 재사용 가능한 controlled component + Storybook + 테스트 세트 생성 | react, component, storybook, web |
+| [`hono-worker`](./skills/hono-worker/SKILL.md) | Hono + Cloudflare Workers API 엔드포인트와 Durable Object 구현 (해당 스택 프로젝트 전용) | hono, workers, api |
+| [`shadcn-manager`](./skills/shadcn-manager/SKILL.md) | shadcn/ui 컴포넌트 설치·import 정리·Storybook 생성·variants 추출 | shadcn, ui, storybook |
+| [`supabase-schema`](./skills/supabase-schema/SKILL.md) | Supabase 테이블·RLS·마이그레이션·Edge Function 스키마 관리 (Supabase 프로젝트 전용) | supabase, postgres, rls |
 
 ## 📄 라이선스
 
