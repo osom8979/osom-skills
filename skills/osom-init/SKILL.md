@@ -17,6 +17,24 @@ keywords: ["osom-skills", "init", "config", "scaffold", "setup"]
 
 > `.osom-skills`는 osom-skills의 개발 파이프라인/역할 스킬이 프로젝트별 빌드 명령·문서 경로·활성 역할 등을 조회하는 단일 진실 공급원(single source of truth)입니다. 포맷 사양은 `README.md`의 "프로젝트 설정 파일 `.osom-skills`" 섹션을 참조하세요.
 
+## 규칙
+
+이 스킬이 적용하는 규칙입니다. 각 규칙의 상세 내용은 `rules/` 디렉토리를 참조하세요.
+
+### 자동 감지
+
+- [Commands 자동 감지](rules/commands-detection.md) — `package.json` scripts에서 build/test/format 추론
+- [Project documents 자동 감지](rules/project-documents-detection.md) — 구조 문서, 코드 스타일 문서, plans/rules 디렉토리 탐색
+- [Enabled roles 자동 감지](rules/enabled-roles-detection.md) — 디렉토리·패키지 존재 여부로 활성 역할 추론
+- [Phase dependency hints 자동 생성](rules/phase-dependency-detection.md) — 활성 역할에 따른 표준 종속성 매핑
+- [Required companion files 자동 감지](rules/required-companion-files-detection.md) — 실제 존재하는 stories/test 패턴만 등록
+- [Guardrails 기본값](rules/guardrails-detection.md) — 래퍼 사용, push 금지 등 안전 가드
+
+### 서브명령
+
+- [서브명령 목록](rules/subcommands.md) — `detect`, `add-role`, `remove-role`, `set-command`, `validate`
+- [validate 서브명령 세부](rules/validate-subcommand.md) — 검증 항목과 비-자동수정 정책
+
 ## 실행 흐름
 
 ### Step 1: 기존 파일 확인
@@ -31,71 +49,7 @@ keywords: ["osom-skills", "init", "config", "scaffold", "setup"]
 
 ### Step 2: 자동 감지
 
-각 섹션의 기본값을 프로젝트에서 감지합니다. 확신이 없으면 감지된 값과 "감지 불가"를 구분해 드래프트에 표시합니다.
-
-#### Commands
-
-`package.json` 의 `scripts`에서 추론합니다.
-
-| 섹션 키       | 후보 스크립트명                                                      |
-| ------------- | -------------------------------------------------------------------- |
-| `Build/Check` | `check`, `build`, `validate`, `verify`                               |
-| `Typecheck`   | `typecheck`, `type-check`, `tsc`, `tsc --noEmit`                     |
-| `Test`        | `test`, `test:run`, `test:ci`                                        |
-| `Format`      | `format`, `format:write`, `prettier --write`                         |
-| `Commit`      | 설치된 스킬에 `git-commit`이 있으면 `/git-commit`, 없으면 감지 불가   |
-
-**래퍼 감지**: 프로젝트 루트에 실행 가능한 `./npm`, `./npx`, `./node` 파일이 있으면 명령 앞에 `./` 를 붙입니다(예: `./npm run check`).
-
-#### Project documents
-
-| 섹션 키          | 감지 경로                                                         |
-| ---------------- | ----------------------------------------------------------------- |
-| `Structure doc`  | `docs/rules/structure.md`, `docs/structure.md`, `ARCHITECTURE.md` |
-| `Code style doc` | `docs/rules/code-style.md`, `docs/code-style.md`                  |
-| `Plans directory`| `docs/plans/`, `plans/`                                           |
-| `Rules directory`| `docs/rules/`, `docs/`                                            |
-
-파일/디렉토리가 없으면 그 줄은 드래프트에서 **주석 처리**하거나 생략합니다.
-
-#### Enabled roles
-
-디렉토리·패키지 존재 여부로 추론합니다.
-
-| 조건                                              | 활성화 후보            |
-| ------------------------------------------------- | ---------------------- |
-| `components/ui/` 존재 또는 `shadcn.json`          | `shadcn-manager`       |
-| `components/` (ui 제외) 존재                      | `web-component-builder`|
-| `pages/` 또는 `app/` (Next.js/React Router) 존재   | `web-page-builder`     |
-| `src/worker/` 존재 또는 `package.json`에 `hono`    | `hono-worker`          |
-| `postgres/` 존재 또는 `supabase/` 존재            | `supabase-schema`      |
-
-#### Phase dependency hints
-
-활성 역할에 따라 표준 종속성 블록을 생성합니다:
-
-- `shadcn-manager` → Phase 1 (no deps)
-- `supabase-schema` → Phase 1 (no deps)
-- `web-component-builder` → depends on `shadcn-manager`
-- `web-page-builder` → depends on `web-component-builder`
-- `hono-worker` → depends on `supabase-schema`
-
-활성이 아닌 역할은 출력에서 제외합니다.
-
-#### Required companion files
-
-프로젝트에 실제로 존재하는 패턴만 기본값으로 넣습니다:
-
-- `components/**/*.stories.*` 가 하나라도 있으면 `components/**/*.tsx: .stories.tsx`
-- `components/**/*.test.*` 가 있으면 `.test.tsx` 추가
-- `pages/**/index.stories.*` 있으면 페이지 패턴 추가
-- `hooks/**/*.test.*` 있으면 hooks 패턴 추가
-
-#### Guardrails
-
-- 래퍼 존재 시: `Use ./npm, ./npx, ./node wrappers` 항목 포함.
-- 기본 가드: `Never push; commits only` 포함.
-- 사용자에게 추가 가드(예: "production DB 변경 금지")가 있는지 물어봅니다.
+각 섹션의 기본값을 위 [자동 감지 규칙](#자동-감지)에 따라 프로젝트에서 감지합니다. 확신이 없으면 감지된 값과 "감지 불가"를 구분해 드래프트에 표시합니다.
 
 ### Step 3: 드래프트 확인
 
@@ -169,30 +123,6 @@ keywords: ["osom-skills", "init", "config", "scaffold", "setup"]
   - /plan-eng <기능>   → 엔지니어링 관점만 빠르게 검토
   - /doc-audit         → 문서 정합성 확인
 ```
-
-## 서브명령
-
-사용자가 아래 형태로 부분 작업을 요청할 수 있습니다.
-
-| 서브명령                                 | 동작                                                        |
-| ---------------------------------------- | ----------------------------------------------------------- |
-| `/osom-init`                             | 전체 초기화 (기존 파일이 있으면 모드 선택)                  |
-| `/osom-init detect`                      | 감지 결과만 출력, 파일은 쓰지 않음                          |
-| `/osom-init add-role <role>`             | `Enabled roles`에 역할 추가 + 필요한 Phase hint 자동 추가   |
-| `/osom-init remove-role <role>`          | `Enabled roles`에서 역할 제거                               |
-| `/osom-init set-command <key> <command>` | `Commands` 섹션의 특정 키 값 변경 (예: `set-command Build/Check "npm run verify"`) |
-| `/osom-init validate`                    | 현재 `.osom-skills`가 실제 프로젝트 상태와 일치하는지 검사  |
-
-## validate 서브명령 세부
-
-`/osom-init validate`는 다음을 확인합니다:
-
-- `Commands`의 스크립트가 `package.json`에 실제로 있는지
-- `Project documents`의 경로가 실제로 존재하는지
-- `Enabled roles`의 각 역할이 osom-skills 저장소에 실제로 존재하고 프로젝트와 맞는지
-- `Required companion files` 글롭이 실제 프로젝트에서 의미 있는지 (해당 패턴의 파일이 하나도 없으면 경고)
-
-결과는 각 항목별 ✅/⚠ 로 표시하고, 수정 제안을 함께 출력합니다. **자동 수정은 하지 않습니다** — 사용자가 필요하면 `/osom-init` 또는 해당 서브명령을 다시 호출합니다.
 
 ## 주의사항
 

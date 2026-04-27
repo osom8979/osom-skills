@@ -20,49 +20,17 @@ keywords: ["plan", "dba", "schema", "rls", "migration", "postgres"]
 1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 DB 규칙 문서(예: `postgres/structure.md`, `conventions.md`, `sql-naming.md`) 경로를 파악합니다.
 2. DB 스키마 디렉토리(예: `postgres/`)를 훑어 현재 도메인 구조·테이블 목록·기존 RLS 패턴을 파악합니다.
 
-## 리뷰 항목
+## 규칙
 
-### 1. 스키마 영향
+각 리뷰 항목의 상세 내용은 `rules/` 디렉토리를 참조하세요.
 
-- 새 테이블/컬럼/enum이 필요한지
-- 기존 스키마 변경(컬럼 타입 변경, 제약 추가/제거)이 있는지
-- 영향받는 기존 테이블·뷰·함수 열거
-
-### 2. 배치 위치
-
-프로젝트의 도메인 구조 중 어디에 속하는지 결정합니다. 번호 밴드/도메인 분류가 있는 프로젝트라면 그 규칙을 따릅니다.
-
-```
-postgres/<NN>-<domain>/<sub-domain>/
-```
-
-### 3. RLS 정책
-
-- 필요한 행 수준 보안 정책
-- 영향받는 역할(anon, authenticated, service_role, 커스텀 역할)
-- 기존 정책과의 충돌 여부
-
-### 4. 성능 고려
-
-- 예상 쿼리 패턴 (읽기/쓰기 비율, 조건절 컬럼)
-- 필요한 인덱스
-- N+1 쿼리 위험
-- 대용량 조회 시 페이지네이션·커서 전략
-
-### 5. DB 함수 래핑 가능성
-
-순수 쿼리로 해결 가능한 로직은 **DB 함수**로 구현해 Worker/Client에서 RPC 호출하는 편이 나은지 판단합니다. 트랜잭션 경계와 일관성 요구 사항을 고려하세요.
-
-### 6. 데이터 무결성
-
-- 필요한 FK, CHECK, UNIQUE 제약
-- 트리거 필요 여부 (예: `updated_at` 자동 갱신, 파생 컬럼 유지)
-
-### 7. 마이그레이션 안전성
-
-- 기존 데이터에 영향을 주는 변경인지
-- 파괴적 변경(컬럼/테이블 삭제, 타입 변경) 유무 — **있다면 경고 표시**
-- 다운타임 없이 배포 가능한 전략 (예: 컬럼 추가 → 백필 → 제약 추가 단계 분리)
+1. [스키마 영향](rules/schema-impact.md) — 신규/변경 객체와 영향받는 테이블·뷰·함수
+2. [배치 위치](rules/schema-placement.md) — 도메인 디렉토리 번호 밴드 결정
+3. [RLS 정책](rules/rls-policies.md) — 정책 설계와 silent failure 방지
+4. [성능 고려](rules/performance-considerations.md) — 쿼리 패턴, 인덱스, N+1
+5. [DB 함수 래핑 가능성](rules/db-function-wrapping.md) — RPC vs 클라이언트 쿼리 판단
+6. [데이터 무결성](rules/data-integrity.md) — FK/CHECK/UNIQUE 제약, 트리거
+7. [마이그레이션 안전성](rules/migration-safety.md) — 다단계 분리, 다운타임 방지
 
 ## 출력 형식
 

@@ -32,122 +32,27 @@ keywords: ["react", "component", "controlled-component", "storybook", "testing-l
 
 ### 카테고리 예시
 
-| 카테고리     | 용도            | 예시                            |
-| ------------ | --------------- | ------------------------------- |
-| `inputs`     | 입력 컴포넌트   | EmailInput, PasswordInput       |
-| `switchers`  | 전환/선택 UI    | ThemeSwitcher, LanguageSwitcher |
-| `layouts`    | 레이아웃 구조   | ModalLayout, PageLayout         |
-| `buttons`    | 버튼 계열       | SocialButton, SubmitButton      |
-| `cards`      | 카드 계열       | ProfileCard, StatsCard          |
-| `feedback`   | 피드백 UI       | Toast, Alert, ProgressBar       |
-| `navigation` | 네비게이션      | Breadcrumb, TabNav              |
+| 카테고리     | 용도          | 예시                            |
+| ------------ | ------------- | ------------------------------- |
+| `inputs`     | 입력 컴포넌트 | EmailInput, PasswordInput       |
+| `switchers`  | 전환/선택 UI  | ThemeSwitcher, LanguageSwitcher |
+| `layouts`    | 레이아웃 구조 | ModalLayout, PageLayout         |
+| `buttons`    | 버튼 계열     | SocialButton, SubmitButton      |
+| `cards`      | 카드 계열     | ProfileCard, StatsCard          |
+| `feedback`   | 피드백 UI     | Toast, Alert, ProgressBar       |
+| `navigation` | 네비게이션    | Breadcrumb, TabNav              |
 
 기존 프로젝트가 다른 카테고리를 쓰면 그 규약을 따르고, 필요한 경우 새 카테고리 디렉토리를 만듭니다.
 
-## 핵심 규칙
+## 규칙
 
-### 1. Controlled Component만 생성
+이 스킬이 적용하는 규칙입니다. 각 규칙의 상세 내용은 `rules/` 디렉토리를 참조하세요.
 
-내부 state로 데이터를 관리하지 않고, **모든 데이터와 핸들러를 props로 전달받습니다.** Props는 가급적 **Optional**로 정의하고 합리적인 기본값을 제공해 사용 측 부담을 줄입니다.
-
-```tsx
-// ✅ Controlled + Optional props
-interface EmailInputProps {
-  value?: string;
-  onChange?: (value: string) => void;
-  error?: string;
-  placeholder?: string;
-}
-
-export default function EmailInput({
-  value = '',
-  onChange,
-  error,
-  placeholder = '이메일을 입력하세요',
-}: EmailInputProps) {
-  return (
-    <input
-      value={value}
-      onChange={e => onChange?.(e.target.value)}
-      placeholder={placeholder}
-    />
-  );
-}
-
-// ❌ Uncontrolled — 내부 state 사용 금지
-export default function EmailInput() {
-  const [value, setValue] = useState('');
-  return <input value={value} onChange={e => setValue(e.target.value)} />;
-}
-```
-
-### 2. 코드 스타일
-
-프로젝트의 `code-style` 문서를 따릅니다. 공통 권장 사항:
-
-- 경로 alias가 있다면 우선 사용
-- `import *` 금지
-- `React.` 네임스페이스 대신 명시적 named import
-- 반응형은 mobile-first + 프로젝트가 쓰는 유틸리티(Tailwind 등) 규약 준수
-
-### 3. Storybook 스토리
-
-```tsx
-import type {Meta, StoryObj} from '@storybook/react';
-import EmailInput from '@/components/inputs/EmailInput';
-
-const meta = {
-  title: 'inputs/EmailInput',
-  component: EmailInput,
-} satisfies Meta<typeof EmailInput>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {value: '', onChange: () => {}},
-};
-
-export const WithError: Story = {
-  args: {value: 'invalid', onChange: () => {}, error: '올바른 이메일을 입력하세요'},
-};
-```
-
-- `title`은 `<category>/<Name>` 형식 또는 프로젝트의 기존 규약
-- **주요 상태별** Story를 각각 정의 (Default, WithError, Disabled 등)
-
-### 4. 테스트
-
-```tsx
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import {describe, it, expect, vi} from 'vitest';
-import EmailInput from '@/components/inputs/EmailInput';
-
-describe('EmailInput', () => {
-  it('renders with value', () => {
-    render(<EmailInput value="test@example.com" onChange={() => {}} />);
-    expect(screen.getByDisplayValue('test@example.com')).toBeInTheDocument();
-  });
-
-  it('calls onChange when typing', async () => {
-    const onChange = vi.fn();
-    render(<EmailInput value="" onChange={onChange} />);
-    await userEvent.type(screen.getByRole('textbox'), 'a');
-    expect(onChange).toHaveBeenCalled();
-  });
-});
-```
-
-Props 동작(controlled이므로 props가 곧 테스트 케이스)을 중심으로 검증합니다.
-
-## 베이스 UI(shadcn/ui 등) 사용
-
-`components/ui/`와 같은 베이스 UI 디렉토리는 전용 관리자(`shadcn-manager` 스킬)가 소유합니다. **직접 수정하지 마세요.** 필요한 컴포넌트가 아직 없으면 결과 보고에 명시합니다:
-
-```
-⚠ 필요한 shadcn/ui 컴포넌트: tooltip, popover
-```
+- [Controlled Component만 생성](rules/controlled-component-only.md) — 내부 state 금지, props로 모든 데이터/핸들러 전달
+- [코드 스타일](rules/code-style.md) — alias, `import *` 금지, 명시적 named import
+- [Storybook 스토리](rules/storybook-stories.md) — 주요 상태별 Story 정의 (Default/WithError/Disabled 등)
+- [컴포넌트 테스트](rules/component-tests.md) — Testing Library 기반 props 동작 검증
+- [베이스 UI 사용](rules/base-ui-usage.md) — `components/ui/`는 직접 수정 금지, 누락은 보고
 
 ## 출력 형식
 

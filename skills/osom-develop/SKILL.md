@@ -17,10 +17,18 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 ## 사전 준비
 
-작업 시작 전 반드시 다음을 읽으세요:
+작업 시작 전 반드시 다음을 읽으세요.
 
 1. 프로젝트 루트의 `.osom-skills` — **Commands**(Build/Check, Test, Commit), **Project documents**(구조·스타일 문서), **Enabled roles**(활성 역할 스킬), **Phase dependency hints**(실행 순서 힌트).
 2. `.osom-skills`의 **Enabled roles**에 있는 역할 스킬의 `SKILL.md`를 훑어 각 역할의 산출물과 규칙을 파악합니다.
+
+## 규칙
+
+이 스킬이 적용하는 규칙입니다. 각 규칙의 상세 내용은 `rules/` 디렉토리를 참조하세요.
+
+- [역할 분배 가이드](rules/role-distribution-guide.md) — 작업 유형별 역할 매핑과 Phase 순서 기본값
+- [역할 호출 규칙](rules/role-invocation-rules.md) — 컨텍스트 전달, 병렬 호출, Task 추적 등 호출 시 준수 사항
+- [직접 개발 판단](rules/direct-development-criteria.md) — 역할 분배가 부적절한 작업의 판단 기준
 
 ## 실행 흐름
 
@@ -28,13 +36,13 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 사용자 입력을 분석하여 다음을 결정합니다.
 
-1. **어떤 역할 스킬이 필요한지** 식별 — `.osom-skills`의 **Enabled roles**에 있는 것 중에서만 선택.
+1. **어떤 역할 스킬이 필요한지** 식별 — `.osom-skills`의 **Enabled roles**에 있는 것 중에서만 선택. ([역할 분배 가이드](rules/role-distribution-guide.md))
 2. **Phase 종속성** 파악 — **Phase dependency hints** 활용.
 3. **작업 단위** 분해 — 각 역할에 줄 구체적인 지시.
 
 ### Step 2: Phase 구성 및 출력
 
-분석 결과를 사용자에게 보여주고 확인을 받습니다:
+분석 결과를 사용자에게 보여주고 확인을 받습니다.
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -75,10 +83,7 @@ Phase N 실행 → ...
   ▶ web-component-builder: ProfileCard 생성 중...
 ```
 
-**같은 Phase 내 작업은 반드시 병렬(동시)로 호출합니다.** 구현 옵션:
-
-- 해당 역할 스킬이 `.claude/agents/`에 서브에이전트로도 설치되어 있다면 Agent 도구의 `subagent_type`을 사용.
-- 서브에이전트가 없으면 Agent 도구로 `general-purpose`를 띄우고 프롬프트에 `"역할 스킬 <role-name>의 지침을 그대로 따르세요. SKILL.md 경로: <path>"`를 명시.
+같은 Phase 내 작업은 [역할 호출 규칙](rules/role-invocation-rules.md)에 따라 **반드시 병렬(동시)로 호출**합니다.
 
 각 작업 완료 시 출력:
 
@@ -123,7 +128,7 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
 
 ### Step 5: 문서 정합성 체크
 
-변경된 파일을 기반으로 규칙 문서 갱신이 필요한지 확인합니다. 이 검증은 `/doc-audit`을 호출해 위임하거나, 다음 항목을 수기로 확인합니다:
+변경된 파일을 기반으로 규칙 문서 갱신이 필요한지 확인합니다. 이 검증은 `/doc-audit`을 호출해 위임하거나, 다음 항목을 수기로 확인합니다.
 
 - 새 훅/컴포넌트/유틸리티/상수/타입/라우트 추가 → 해당 `directory-rules/<topic>.md` 갱신 필요?
 - 필수 동반 파일 누락 — `.stories.tsx`, `.test.tsx` 등
@@ -152,36 +157,6 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
 
 다음 단계: /integrate → /refactor → /code-review
 ```
-
-## 역할 분배 가이드
-
-기본 매핑 예시(실제 분배는 `.osom-skills`의 Enabled roles 기준으로 제한):
-
-| 작업 유형                                      | 역할 스킬           | Phase 순서            |
-| ---------------------------------------------- | ------------------- | --------------------- |
-| shadcn/ui 설치, import 정리, stories, variants | `shadcn-manager`    | 먼저 (종속성 없음)    |
-| Controlled Component + stories + test          | `web-component-builder` | shadcn 의존 시 후순위 |
-| 라우트 페이지 + 하위 컴포넌트                  | `web-page-builder`      | 컴포넌트 후           |
-| Hono API 엔드포인트, Durable Object            | `hono-worker`       | DB 스키마 후          |
-| DB 스키마, RLS, 마이그레이션, Edge Func        | `supabase-schema`   | 먼저 (종속성 없음)    |
-
-새 역할이 추가되면 `.osom-skills`의 **Enabled roles**와 **Phase dependency hints**에 함께 기록하세요.
-
-## 역할 호출 규칙
-
-1. **충분한 컨텍스트 전달**: 역할은 현재 대화를 모릅니다. 무엇을 만들어야 하는지, 파일 위치, 관련 타입, 기존 코드 패턴 등을 프롬프트에 명시하세요.
-2. **문서 읽기 지시**: 역할에게 관련 규칙 문서(`.osom-skills`의 Project documents 값)를 먼저 읽으라고 지시하세요.
-3. **병렬 호출**: 같은 Phase 내 작업은 하나의 메시지에서 동시에 도구를 호출하세요.
-4. **결과 검증**: 각 Phase 완료 후 `.osom-skills`의 Build/Check로 빌드 확인.
-5. **Task 추적**: 각 역할 작업을 `TaskCreate`로 생성하고, 완료 시 `TaskUpdate`로 상태를 갱신하세요.
-
-## 직접 개발 판단
-
-모든 작업이 역할 분배에 적합한 것은 아닙니다. 다음 경우 메인 Claude가 직접 수행합니다:
-
-- 단일 파일 수정으로 끝나는 작은 작업
-- 역할 간 경계가 불명확한 작업
-- 기존 코드의 단순 수정/버그 픽스
 
 ## 주의사항
 

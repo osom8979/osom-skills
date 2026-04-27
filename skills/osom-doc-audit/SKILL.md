@@ -20,48 +20,19 @@ keywords: ["audit", "docs", "consistency", "sync"]
 1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션(구조 문서, 규칙 디렉토리)과 **Required companion files** 섹션을 읽습니다.
 2. `CLAUDE.md`가 있으면 문서 인덱스 위치를 파악합니다.
 
-## 검증 항목
+## 규칙
 
-### 1. CLAUDE.md 인덱스 링크 검증
+각 검증 항목의 상세 내용은 `rules/` 디렉토리를 참조하세요. 아래 순서대로 검증합니다.
 
-`CLAUDE.md`의 문서 인덱스에 나열된 모든 링크가 실제로 존재하는지 확인합니다.
+1. [CLAUDE.md 인덱스 링크](rules/claude-md-index-check.md) — 인덱스 링크 유효성
+2. [디렉토리별 파일 규칙](rules/directory-rules-check.md) — `directory-rules/*.md` vs 실제 디렉토리 일치 여부
+3. [DB 스키마 문서](rules/db-schema-docs-check.md) — `postgres/` 디렉토리와 SQL 규칙 문서 일치 여부
+4. [에이전트/스킬 정의](rules/agent-skill-definitions-check.md) — `.claude/agents/`, `.claude/skills/` 정의 유효성
+5. [코드 스타일 위반 샘플링](rules/code-style-violations.md) — `import *`, `React.`, 래퍼 우회 등
 
-### 2. 디렉토리별 파일 규칙 검증
+추가:
 
-`.osom-skills`의 **Project documents → Rules directory**에 속하는 문서(예: `structure.md`, `directory-rules/*.md`)의 목록이 실제 디렉토리 내용과 일치하는지 확인합니다.
-
-**확인 대상 (프로젝트에 존재하는 것만)**
-
-- `hooks/` — 문서에 나열된 훅 vs 실제 파일
-- `contexts/` — 문서에 나열된 컨텍스트 vs 실제 파일
-- `types/` — 문서에 나열된 타입 파일 vs 실제 파일
-- `lib/` — 문서에 나열된 유틸리티 vs 실제 파일
-- `constants/` — 문서에 나열된 상수 파일 vs 실제 파일
-- `routes/` — 문서에 나열된 라우트 파일 vs 실제 파일
-- `components/` — 카테고리 목록 일치 여부
-- `components/ui/` — 설치된 shadcn 컴포넌트 목록
-
-**필수 동반 파일 누락** (`.osom-skills`의 Required companion files 기준)
-
-### 3. DB 스키마 문서 검증 (해당하는 프로젝트만)
-
-프로젝트가 `postgres/` 같은 DB 스키마 디렉토리를 가지면, 관련 규칙 문서(`structure`, `conventions`, `sql-naming` 등)가 실제 디렉토리 구조와 일치하는지 확인합니다.
-
-### 4. 에이전트/스킬 정의 검증
-
-`.claude/agents/*.md`, `.claude/skills/*/SKILL.md`의 정의가:
-
-- 참조하는 디렉토리/파일이 실제로 존재하는지
-- Working Area 정의가 실제 디렉토리와 일치하는지
-- `allowed-tools`에 나열된 도구가 유효한지
-
-### 5. 코드 스타일 위반 샘플링
-
-프로젝트의 code-style 규칙 중 주요 위반을 샘플링합니다:
-
-- `import *` 사용 여부 (`components/ui/` 포함)
-- `React.` 네임스페이스 사용 여부
-- 래퍼가 있는 프로젝트에서 `npm`/`npx`/`node` 직접 사용 여부 (스크립트 내, `package.json` 제외)
+- [수정(fix) 모드](rules/fix-mode.md) — `/doc-audit fix` 호출 시 자동 수정 범위와 예외
 
 ## 실행 절차
 
@@ -102,14 +73,6 @@ keywords: ["audit", "docs", "consistency", "sync"]
 요약: 3개 불일치, 2개 정상
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
-
-## 수정 모드
-
-사용자가 `/doc-audit fix`로 호출하면, 불일치 항목을 자동으로 수정합니다:
-
-- 문서에 누락된 파일/항목 추가
-- 삭제된 파일/항목 제거
-- **단, 코드 스타일 위반은 보고만 하고 자동 수정하지 않습니다** (리팩토링 범위이므로 `/refactor`에 위임).
 
 ## 주의사항
 

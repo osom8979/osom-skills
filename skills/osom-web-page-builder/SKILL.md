@@ -17,7 +17,7 @@ keywords: ["react", "page", "route", "storybook", "controlled-component", "web"]
 
 ## 사전 준비
 
-작업 시작 전 가능하다면 다음을 확인하세요:
+작업 시작 전 가능하다면 다음을 확인하세요.
 
 1. 프로젝트 루트의 `.osom-skills`에서 **Project documents**(구조/스타일 문서 경로)와 **Required companion files**(필수 동반 파일 규칙)를 읽습니다.
 2. `.osom-skills`가 없으면 `CLAUDE.md`, `README.md`, 기존 페이지 디렉토리를 훑어 프로젝트 규약을 추정합니다.
@@ -33,114 +33,30 @@ keywords: ["react", "page", "route", "storybook", "controlled-component", "web"]
 <pages-root>/<scope>/<feature>/index.test.tsx
 ```
 
-페이지 전용 하위 컴포넌트가 필요하면 같은 디렉토리에 **언더스코어 프리픽스** 파일로 분리합니다(예: `_FeatureCard.tsx`). 이 컴포넌트는 해당 페이지에서만 사용되며 재사용 금지입니다.
+페이지 전용 하위 컴포넌트가 필요하면 같은 디렉토리에 **언더스코어 프리픽스** 파일로 분리합니다(예: `_FeatureCard.tsx`).
 
-## 핵심 규칙
+## 규칙
 
-### 1. 페이지 네이밍
+이 스킬이 적용하는 규칙입니다. 각 규칙의 상세 내용은 `rules/` 디렉토리를 참조하세요.
 
-`export default function <Name>Page()` 형태로 작성합니다. 간단한 `<Name>`이나 `index` 네이밍은 IDE 탭/스택 트레이스 가독성을 해칩니다.
-
-```tsx
-// ✅
-export default function SignInPage() { ... }
-
-// ❌
-export default function SignIn() { ... }
-export default function index() { ... }
-```
-
-### 2. 페이지가 상태를 소유
-
-페이지는 controlled component와 달리 **내부 state를 가집니다.** 페이지가 상태를 관리하고 controlled component에는 props로 전달합니다.
-
-```tsx
-export default function SignInPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  return (
-    <Card>
-      <EmailInput value={email} onChange={setEmail} />
-      <PasswordInput value={password} onChange={setPassword} />
-    </Card>
-  );
-}
-```
-
-### 3. 페이지 전용 하위 컴포넌트
-
-페이지가 복잡해지면 언더스코어 프리픽스 파일로 분리합니다. 이 컴포넌트는:
-
-- 해당 페이지에서만 사용됨 (재사용 불가)
-- Controlled Component로 구현 (props로 데이터 수신)
-- 가능하면 스토리와 테스트를 함께 생성
-
-### 4. 코드 스타일
-
-프로젝트의 `code-style` 문서를 따릅니다. 공통 권장 사항:
-
-- 경로 alias(`@/...`)가 있다면 우선 사용, 상대 경로 지양
-- 와일드카드 `import *` 금지
-- `React.` 네임스페이스 대신 `import { ... } from 'react'` 사용
-
-### 5. 페이지 스토리
-
-```tsx
-import type {Meta, StoryObj} from '@storybook/react';
-import SignInPage from '@/pages/(public)/signin';
-
-const meta = {
-  title: 'pages/SignInPage',
-  component: SignInPage,
-} satisfies Meta<typeof SignInPage>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {};
-```
-
-`title`은 `pages/<scope>/<Name>Page` 또는 프로젝트의 기존 규약을 따릅니다.
-
-### 6. 페이지 테스트
-
-렌더링 성공, 주요 요소 존재, 핵심 플로우를 최소로 검증합니다.
-
-```tsx
-import {render, screen} from '@testing-library/react';
-import {describe, it, expect} from 'vitest';
-import SignInPage from '@/pages/(public)/signin';
-
-describe('SignInPage', () => {
-  it('renders sign in form', () => {
-    render(<SignInPage />);
-    expect(screen.getByText('Sign In')).toBeInTheDocument();
-  });
-});
-```
+- [페이지 네이밍](rules/page-naming.md) — `<Name>Page` 형태, `index`/`<Name>` 단독 사용 금지
+- [페이지가 상태를 소유](rules/page-owns-state.md) — 내부 state 보유, controlled component에 props 전달
+- [페이지 전용 하위 컴포넌트](rules/page-private-components.md) — 언더스코어 프리픽스 파일, 재사용 금지
+- [코드 스타일](rules/code-style.md) — alias, `import *` 금지, 명시적 named import
+- [페이지 스토리](rules/page-stories.md) — Storybook 동반 파일 생성
+- [페이지 테스트](rules/page-tests.md) — 렌더링/주요 요소/핵심 플로우 최소 검증
+- [라우트 등록 보고](rules/route-registration-report.md) — 직접 등록 금지, `integrate`에 위임할 항목 보고
 
 ## 사용 가능한 공유 자원
 
-| 자원                  | 위치 예시             | 용도                 |
-| --------------------- | --------------------- | -------------------- |
-| Controlled Components | `@/components/...`    | UI 조합              |
-| 베이스 UI 라이브러리  | `@/components/ui/...` | 기본 UI 요소         |
-| Hooks                 | `@/hooks/...`         | useAuth, useI18n 등  |
-| Routes                | `@/routes/...`        | 경로 상수            |
-| Types                 | `@/types/...`         | 타입 정의            |
-| Validation/Utils      | `@/lib/...`           | 유효성 검사, 포매팅  |
-
-## 라우트 등록 보고
-
-새 페이지를 만들었으면 **라우트 등록을 직접 수행하지 말고** 결과 보고에 필요한 항목을 명시합니다(orchestrator의 `integrate` 스킬이 일괄 처리):
-
-```
-⚠ 라우트 등록 필요:
-  - paths: newFeature: '/new-feature'
-  - lazy import: NewFeaturePage
-  - Route 엘리먼트 추가 위치: (app) 스코프
-```
+| 자원                  | 위치 예시             | 용도                |
+| --------------------- | --------------------- | ------------------- |
+| Controlled Components | `@/components/...`    | UI 조합             |
+| 베이스 UI 라이브러리  | `@/components/ui/...` | 기본 UI 요소        |
+| Hooks                 | `@/hooks/...`         | useAuth, useI18n 등 |
+| Routes                | `@/routes/...`        | 경로 상수           |
+| Types                 | `@/types/...`         | 타입 정의           |
+| Validation/Utils      | `@/lib/...`           | 유효성 검사, 포매팅 |
 
 ## 출력 형식
 
