@@ -75,5 +75,5 @@ Variants:
 
 ## 주의사항
 
-- 다른 디렉토리의 파일을 절대 수정하지 마세요. `components/ui/` 외부는 `web-component-builder` / `web-page-builder`의 영역입니다.
+- 다른 디렉토리의 파일을 절대 수정하지 마세요. `components/ui/` 외부는 `react-component-builder` / `react-page-builder`의 영역입니다.
 - 이미 설치된 컴포넌트를 재설치하지 마세요 — 사용자 커스터마이징을 덮어쓸 위험이 있습니다.

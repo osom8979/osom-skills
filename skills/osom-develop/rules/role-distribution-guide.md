@@ -5,8 +5,8 @@
 | 작업 유형                                      | 역할 스킬               | Phase 순서                |
 | ---------------------------------------------- | ----------------------- | ------------------------- |
 | shadcn/ui 설치, import 정리, stories, variants | `shadcn-manager`        | 먼저 (종속성 없음)        |
-| Controlled Component + stories + test          | `web-component-builder` | shadcn 의존 시 후순위     |
-| 라우트 페이지 + 하위 컴포넌트                  | `web-page-builder`      | 컴포넌트 후               |
+| Controlled Component + stories + test          | `react-component-builder` | shadcn 의존 시 후순위   |
+| 라우트 페이지 + 하위 컴포넌트                  | `react-page-builder`    | 컴포넌트 후               |
 | Hono API 엔드포인트, Durable Object            | `hono-worker`           | DB 스키마 후              |
 | DB 스키마, RLS, 마이그레이션, Edge Func        | `supabase-schema`       | 먼저 (종속성 없음)        |
 

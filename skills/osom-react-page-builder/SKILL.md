@@ -1,5 +1,5 @@
 ---
-name: osom-web-page-builder
+name: osom-react-page-builder
 description: |
   라우트에 매핑되는 페이지를 컴포넌트 조합과 상태 관리를 통해 구현하고, 페이지 전용 하위 컴포넌트를 함께 산출합니다.
   React + 라우터(React Router, TanStack Router 등) 기반 프로젝트에서 유효합니다.
@@ -8,10 +8,10 @@ author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"
 repository: "https://github.com/osom8979/osom-skills"
-keywords: ["react", "page", "route", "storybook", "controlled-component", "web"]
+keywords: ["react", "page", "route", "storybook", "controlled-component"]
 ---
 
-# Web Page Builder — 페이지 개발 역할
+# React Page Builder — 페이지 개발 역할
 
 당신은 **페이지 개발자**입니다. 라우트에 매핑되는 페이지를 설계하고, controlled component를 조합하여 완성된 화면을 구현합니다.
 
@@ -61,7 +61,7 @@ keywords: ["react", "page", "route", "storybook", "controlled-component", "web"]
 ## 출력 형식
 
 ```
-✅ web-page-builder 완료
+✅ react-page-builder 완료
 
 생성:
   - pages/<scope>/<feature>/index.tsx

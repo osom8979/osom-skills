@@ -55,7 +55,7 @@ npx skills remove
 
 ## ⚙️ 프로젝트 설정 파일 `.osom-skills`
 
-개발 파이프라인 스킬(`osom-plan-*`, `osom-develop`, `osom-kickoff`, `osom-code-review` 등)과 역할 스킬(`osom-web-page-builder`, `osom-web-component-builder` 등)은 프로젝트 루트의 `.osom-skills` 파일을 읽어 프로젝트 고유 정보(빌드 명령, 문서 경로, 활성화된 역할, 필수 동반 파일 등)를 파악합니다.
+개발 파이프라인 스킬(`osom-plan-*`, `osom-develop`, `osom-kickoff`, `osom-react-review` 등)과 역할 스킬(`osom-react-page-builder`, `osom-react-component-builder` 등)은 프로젝트 루트의 `.osom-skills` 파일을 읽어 프로젝트 고유 정보(빌드 명령, 문서 경로, 활성화된 역할, 필수 동반 파일 등)를 파악합니다.
 
 파일이 없으면 합리적인 기본값으로 동작하거나 사용자에게 질문하며, 파일이 있으면 그 값을 **그대로** 사용합니다. 처음 설정할 때는 `/osom-init`을 호출하면 프로젝트 상태(package.json, 디렉토리 구조, 기존 문서)를 감지해 드래프트를 만들어줍니다.
 
@@ -86,14 +86,14 @@ npx skills remove
 - Rules directory: `docs/rules/`
 
 ## Enabled roles
-- osom-web-page-builder
-- osom-web-component-builder
+- osom-react-page-builder
+- osom-react-component-builder
 - osom-shadcn-manager
 
 ## Phase dependency hints
 - osom-shadcn-manager → Phase 1 (no deps)
-- osom-web-component-builder → depends on osom-shadcn-manager
-- osom-web-page-builder → depends on osom-web-component-builder
+- osom-react-component-builder → depends on osom-shadcn-manager
+- osom-react-page-builder → depends on osom-react-component-builder
 
 ## Required companion files
 - `components/**/*.tsx`: `.stories.tsx`, `.test.tsx`
@@ -113,7 +113,7 @@ npx skills remove
 | `Project documents`          | 스킬이 참조할 규칙/계획 문서 위치                                                    |
 | `Enabled roles`              | 현재 프로젝트에서 사용할 역할 스킬 목록 (orchestrator의 분배 대상)                   |
 | `Phase dependency hints`     | 역할 간 실행 순서 힌트                                                               |
-| `Required companion files`   | 경로 글롭 → 동반 파일(스토리·테스트 등). `osom-code-review`, `osom-doc-audit`이 누락을 검증 |
+| `Required companion files`   | 경로 글롭 → 동반 파일(스토리·테스트 등). `osom-react-review`, `osom-doc-audit`이 누락을 검증 |
 | `Guardrails`                 | 스킬이 지켜야 할 제약 (예: push 금지)                                                |
 
 ## 🛠️ 제공하는 스킬 목록
@@ -145,7 +145,7 @@ npx skills remove
 | [`osom-develop`](./skills/osom-develop/SKILL.md) | Phase별 역할 스킬 분배·병렬 실행·빌드 검증 | pipeline, parallel, build |
 | [`osom-integrate`](./skills/osom-integrate/SKILL.md) | 라우트/타입/i18n/설정 등 크로스커팅 파일 정합성 통합 | integration, routes, i18n |
 | [`osom-refactor`](./skills/osom-refactor/SKILL.md) | 변경된 파일의 중복 제거·복잡성 감소·패턴 통일 | refactor, code quality |
-| [`osom-code-review`](./skills/osom-code-review/SKILL.md) | 코드 스타일·필수 파일·빌드·테스트·보안 검증 (PR 리뷰가 아닌 파이프라인 품질 게이트) | qa, gate, review |
+| [`osom-react-review`](./skills/osom-react-review/SKILL.md) | React/TS 프로젝트의 코드 스타일·필수 파일·빌드·테스트·보안 검증 (PR 리뷰가 아닌 파이프라인 품질 게이트) | react, qa, gate, review |
 | [`osom-kickoff`](./skills/osom-kickoff/SKILL.md) | Plan → Develop → Integrate → Refactor → Review → Commit 전체 흐름 오케스트레이션 | orchestration, pipeline |
 
 ### 프로젝트 거버넌스
@@ -160,8 +160,8 @@ npx skills remove
 
 | 스킬 이름 | 주요 기능 | 주요 키워드 |
 | :--- | :--- | :--- |
-| [`osom-web-page-builder`](./skills/osom-web-page-builder/SKILL.md) | 라우트 페이지와 페이지 전용 하위 컴포넌트 세트(페이지·스토리·테스트) 생성 | react, page, route, web |
-| [`osom-web-component-builder`](./skills/osom-web-component-builder/SKILL.md) | 재사용 가능한 controlled component + Storybook + 테스트 세트 생성 | react, component, storybook, web |
+| [`osom-react-page-builder`](./skills/osom-react-page-builder/SKILL.md) | 라우트 페이지와 페이지 전용 하위 컴포넌트 세트(페이지·스토리·테스트) 생성 | react, page, route |
+| [`osom-react-component-builder`](./skills/osom-react-component-builder/SKILL.md) | 재사용 가능한 controlled component + Storybook + 테스트 세트 생성 | react, component, storybook |
 | [`osom-hono-worker`](./skills/osom-hono-worker/SKILL.md) | Hono + Cloudflare Workers API 엔드포인트와 Durable Object 구현 (해당 스택 프로젝트 전용) | hono, workers, api |
 | [`osom-shadcn-manager`](./skills/osom-shadcn-manager/SKILL.md) | shadcn/ui 컴포넌트 설치·import 정리·Storybook 생성·variants 추출 | shadcn, ui, storybook |
 | [`osom-supabase-schema`](./skills/osom-supabase-schema/SKILL.md) | Supabase 테이블·RLS·마이그레이션·Edge Function 스키마 관리 (Supabase 프로젝트 전용) | supabase, postgres, rls |

@@ -75,8 +75,8 @@ keywords: ["osom-skills", "init", "config", "scaffold", "setup"]
 - Rules directory: `docs/rules/`              ✓ 존재
 
 ## Enabled roles
-- web-component-builder   ← components/ 감지
-- web-page-builder        ← pages/ 감지
+- react-component-builder   ← components/ 감지
+- react-page-builder        ← pages/ 감지
 - shadcn-manager          ← components/ui/ 감지
 - hono-worker             ← src/worker/ + hono 의존성 감지
 - supabase-schema         ← postgres/ 감지
@@ -84,8 +84,8 @@ keywords: ["osom-skills", "init", "config", "scaffold", "setup"]
 ## Phase dependency hints
 - shadcn-manager → Phase 1
 - supabase-schema → Phase 1
-- web-component-builder → depends on shadcn-manager
-- web-page-builder → depends on web-component-builder
+- react-component-builder → depends on shadcn-manager
+- react-page-builder → depends on react-component-builder
 - hono-worker → depends on supabase-schema
 
 ## Required companion files

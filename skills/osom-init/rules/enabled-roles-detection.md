@@ -5,8 +5,8 @@
 | 조건                                            | 활성화 후보             |
 | ----------------------------------------------- | ----------------------- |
 | `components/ui/` 존재 또는 `shadcn.json`        | `shadcn-manager`        |
-| `components/` (ui 제외) 존재                    | `web-component-builder` |
-| `pages/` 또는 `app/` (Next.js/React Router) 존재 | `web-page-builder`      |
+| `components/` (ui 제외) 존재                    | `react-component-builder` |
+| `pages/` 또는 `app/` (Next.js/React Router) 존재 | `react-page-builder`    |
 | `src/worker/` 존재 또는 `package.json`에 `hono` | `hono-worker`           |
 | `postgres/` 존재 또는 `supabase/` 존재          | `supabase-schema`       |
 

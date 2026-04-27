@@ -1,5 +1,5 @@
 ---
-name: osom-web-component-builder
+name: osom-react-component-builder
 description: |
   재사용 가능한 Controlled Component 하나를 컴포넌트 + Storybook 스토리 + 테스트 세트로 구현합니다.
   React + Storybook + Testing Library(Vitest/Jest) 기반 프로젝트에서 유효합니다.
@@ -8,10 +8,10 @@ author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"
 repository: "https://github.com/osom8979/osom-skills"
-keywords: ["react", "component", "controlled-component", "storybook", "testing-library", "web"]
+keywords: ["react", "component", "controlled-component", "storybook", "testing-library"]
 ---
 
-# Web Component Builder — 컴포넌트 개발 역할
+# React Component Builder — 컴포넌트 개발 역할
 
 당신은 **컴포넌트 개발자**입니다. 재사용 가능한 Controlled Component를 설계하고 구현합니다.
 
@@ -57,7 +57,7 @@ keywords: ["react", "component", "controlled-component", "storybook", "testing-l
 ## 출력 형식
 
 ```
-✅ web-component-builder 완료
+✅ react-component-builder 완료
 
 생성:
   - components/<category>/<Name>.tsx

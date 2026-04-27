@@ -51,10 +51,10 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 Phase 1 (병렬)
   ▸ shadcn-manager — tooltip 컴포넌트 설치
-  ▸ web-component-builder — ProfileCard 생성
+  ▸ react-component-builder — ProfileCard 생성
 
 Phase 2 (Phase 1 완료 후)
-  ▸ web-page-builder — 프로필 페이지 조합
+  ▸ react-page-builder — 프로필 페이지 조합
 
 진행할까요? [Y/n]
 ```
@@ -80,7 +80,7 @@ Phase N 실행 → ...
 [Phase 1/2] 기반 작업 — 병렬 실행 중
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ▶ shadcn-manager: tooltip 설치 중...
-  ▶ web-component-builder: ProfileCard 생성 중...
+  ▶ react-component-builder: ProfileCard 생성 중...
 ```
 
 같은 Phase 내 작업은 [역할 호출 규칙](rules/role-invocation-rules.md)에 따라 **반드시 병렬(동시)로 호출**합니다.
@@ -89,7 +89,7 @@ Phase N 실행 → ...
 
 ```
   ✓ shadcn-manager 완료 — tooltip.tsx 설치, stories 생성
-  ✓ web-component-builder 완료 — ProfileCard.tsx + stories + test
+  ✓ react-component-builder 완료 — ProfileCard.tsx + stories + test
 ```
 
 #### 3-2. 빌드 검증
@@ -139,8 +139,8 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [Develop] 완료
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✓ Phase 1: shadcn-manager, web-component-builder — committed
-  ✓ Phase 2: web-page-builder — committed
+  ✓ Phase 1: shadcn-manager, react-component-builder — committed
+  ✓ Phase 2: react-page-builder — committed
   ✓ 최종 빌드 검증 통과
   ✓ 문서 정합성 확인
   ✓ 체크리스트 갱신 완료 (<plans-dir>/xxx.md)
@@ -155,7 +155,7 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
   - pages/(app)/profile/index.tsx (신규)
   - ...
 
-다음 단계: /integrate → /refactor → /code-review
+다음 단계: /integrate → /refactor → /react-review
 ```
 
 ## 주의사항
