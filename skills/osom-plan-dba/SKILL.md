@@ -1,9 +1,9 @@
 ---
-name: plan-dba
+name: osom-plan-dba
 description: |
   기능 요청을 DBA 관점에서 리뷰합니다. 스키마 영향, 배치 위치, RLS 정책, 성능, 무결성, 마이그레이션 안전성을 분석합니다.
   코드를 수정하지 않고 분석만 합니다. DB 레이어가 있는 프로젝트에서만 유효합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

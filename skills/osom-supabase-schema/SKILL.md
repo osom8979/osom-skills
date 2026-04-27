@@ -1,9 +1,9 @@
 ---
-name: supabase-schema
+name: osom-supabase-schema
 description: |
   Supabase 데이터베이스 스키마, 마이그레이션, RLS 정책, Edge Function을 관리합니다.
   이 스킬은 Supabase + PostgreSQL 기반 프로젝트에서만 유효합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

@@ -1,9 +1,9 @@
 ---
-name: rule-manage
+name: osom-rule-manage
 description: |
   프로젝트 규칙을 자연어 요청으로 추가/수정/삭제합니다.
   CLAUDE.md, 규칙 문서 디렉토리, 스킬·에이전트 정의를 대상으로 하며, 변경 전 사용자 확인을 받습니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

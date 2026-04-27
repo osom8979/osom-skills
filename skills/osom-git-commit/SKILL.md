@@ -3,7 +3,7 @@ name: osom-git-commit
 description: |
   Conventional Commits 명세를 따르는 커밋 메시지를 생성합니다.
   커밋할 변경사항이 이미 git add로 스테이징되어 있어야 합니다.
-version: 1.0.1
+version: 1.1.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

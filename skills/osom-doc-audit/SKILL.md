@@ -3,7 +3,7 @@ name: osom-doc-audit
 description: |
   프로젝트 문서(CLAUDE.md, docs/, 스킬·에이전트 정의)와 실제 코드 상태의 정합성을 검증하고 불일치를 보고합니다.
   `fix` 서브명령으로 자동 수정도 지원합니다(코드 스타일 위반은 보고만).
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

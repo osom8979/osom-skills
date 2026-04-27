@@ -3,7 +3,7 @@ name: osom-git-branch
 description: |
   Git 브랜치를 생성, 전환, 삭제하는 등 브랜치를 관리합니다.
   지원하는 동작: create, checkout, delete, list, merge
-version: 1.0.1
+version: 1.1.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

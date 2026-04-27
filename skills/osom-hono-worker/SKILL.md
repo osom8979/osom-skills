@@ -1,9 +1,9 @@
 ---
-name: hono-worker
+name: osom-hono-worker
 description: |
   Hono + Cloudflare Workers 기반 API 엔드포인트와 Durable Object를 구현합니다.
   이 스킬은 Hono/Workers 스택 프로젝트에서만 유효합니다. 다른 백엔드 프레임워크에는 적용하지 마세요.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

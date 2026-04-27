@@ -1,9 +1,9 @@
 ---
-name: refactor
+name: osom-refactor
 description: |
   변경된 파일만 대상으로 중복 제거, 복잡성 감소, 패턴 통일, import 정리를 수행합니다.
   동작은 바꾸지 않고 구조만 개선합니다. 관련 없는 코드는 건드리지 않습니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

@@ -1,9 +1,9 @@
 ---
-name: web-component-builder
+name: osom-web-component-builder
 description: |
   재사용 가능한 Controlled Component 하나를 컴포넌트 + Storybook 스토리 + 테스트 세트로 구현합니다.
   React + Storybook + Testing Library(Vitest/Jest) 기반 프로젝트에서 유효합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

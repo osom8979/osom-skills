@@ -1,9 +1,9 @@
 ---
-name: integrate
+name: osom-integrate
 description: |
   개발 결과물의 크로스커팅 파일(라우트, 타입, i18n, Worker 설정 등)을 통합하고 정합성을 확인합니다.
   개별 역할 스킬이 남긴 누락 보고를 실제로 반영합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

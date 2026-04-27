@@ -1,9 +1,9 @@
 ---
-name: plan-eng
+name: osom-plan-eng
 description: |
   기능 요청을 엔지니어링 관점에서 리뷰합니다. 기술 타당성, 영향 범위, 필요한 역할 스킬, 종속성, 리스크를 분석합니다.
   코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/kickoff`가 수행합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

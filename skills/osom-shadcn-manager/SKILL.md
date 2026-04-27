@@ -1,9 +1,9 @@
 ---
-name: shadcn-manager
+name: osom-shadcn-manager
 description: |
   shadcn/ui 컴포넌트를 설치하고, import 정리, Storybook 스토리 생성, variants 추출까지 일괄 수행합니다.
   shadcn/ui를 사용하는 React 프로젝트에서 유효합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

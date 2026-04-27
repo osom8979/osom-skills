@@ -1,11 +1,11 @@
 ---
-name: pgtap-best-practices
+name: osom-pgtap-best-practices
 description: |
   PostgreSQL pgTAP 단위 테스트를 권위 있는 베스트 프랙티스에 따라 작성·리뷰합니다.
   pgTAP 공식 문서, pgTAP 창시자 David Wheeler, Supabase, Basejump의 패턴을 종합합니다.
   RLS silent failure 검출, 픽스처 헬퍼 추출, 결과셋 비교(results/set/bag) 선택,
   트랜잭션 격리, 파일 조직, pg_prove 실행까지 전 영역을 다룹니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

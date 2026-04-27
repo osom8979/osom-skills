@@ -1,9 +1,9 @@
 ---
-name: web-page-builder
+name: osom-web-page-builder
 description: |
   라우트에 매핑되는 페이지를 컴포넌트 조합과 상태 관리를 통해 구현하고, 페이지 전용 하위 컴포넌트를 함께 산출합니다.
   React + 라우터(React Router, TanStack Router 등) 기반 프로젝트에서 유효합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

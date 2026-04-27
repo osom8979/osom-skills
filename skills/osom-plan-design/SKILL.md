@@ -1,9 +1,9 @@
 ---
-name: plan-design
+name: osom-plan-design
 description: |
   기능 요청을 디자인/UX 관점에서 리뷰합니다. UX 방향, 필요한 컴포넌트, 기존 컴포넌트 재사용 가능성을 분석합니다.
   코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/kickoff`가 수행합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

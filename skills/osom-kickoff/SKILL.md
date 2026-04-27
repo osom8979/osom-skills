@@ -1,9 +1,9 @@
 ---
-name: kickoff
+name: osom-kickoff
 description: |
   기능 요청을 받아 Plan → Develop → Integrate → Refactor → Code Review → Commit 전체 파이프라인을 오케스트레이션합니다.
   각 단계 전환 시 진행 상황을 명확히 출력하며, 최소 단위 [진행 → 커밋] 순환을 유지합니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

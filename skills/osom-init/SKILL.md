@@ -3,7 +3,7 @@ name: osom-init
 description: |
   프로젝트 루트에 `.osom-skills` 설정 파일을 생성하거나 갱신합니다.
   package.json, 디렉토리 구조, 기존 문서를 자동 감지해 기본값을 채우고, 사용자 확인 후 파일을 씁니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

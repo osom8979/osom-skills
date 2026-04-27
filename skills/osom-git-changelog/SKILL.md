@@ -3,7 +3,7 @@ name: osom-git-changelog
 description: |
   Git 커밋 히스토리를 분석하여 CHANGELOG를 생성하거나 업데이트합니다.
   Conventional Commits 형식에 따라 변경사항을 분류합니다.
-version: 1.0.1
+version: 1.1.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"
