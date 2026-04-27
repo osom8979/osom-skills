@@ -1,5 +1,5 @@
 ---
-name: git-branch
+name: osom-git-branch
 description: |
   Git 브랜치를 생성, 전환, 삭제하는 등 브랜치를 관리합니다.
   지원하는 동작: create, checkout, delete, list, merge

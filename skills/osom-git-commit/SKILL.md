@@ -1,5 +1,5 @@
 ---
-name: git-commit
+name: osom-git-commit
 description: |
   Conventional Commits 명세를 따르는 커밋 메시지를 생성합니다.
   커밋할 변경사항이 이미 git add로 스테이징되어 있어야 합니다.

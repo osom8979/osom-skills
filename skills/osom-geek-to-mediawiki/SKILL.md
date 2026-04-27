@@ -1,9 +1,9 @@
 ---
-name: geek-to-mediawiki
+name: osom-geek-to-mediawiki
 description: |
   GeekNews(news.hada.io) 뉴스 페이지를 MediaWiki 포맷으로 변환합니다.
   URI를 입력하면 해당 뉴스의 내용을 분석하여 MediaWiki 페이지를 생성합니다.
-version: 1.0.0
+version: 1.1.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

@@ -1,9 +1,9 @@
 ---
-name: code-review
+name: osom-code-review
 description: |
   코드 스타일, 필수 동반 파일, 빌드, 테스트, 보안, 문서 동기화를 검증하는 파이프라인 내부 품질 게이트입니다.
   Claude Code 내장 `/review`(PR 리뷰)와는 다릅니다 — 이 스킬은 커밋 직전 자체 검증용이며 코드를 수정하지 않습니다.
-version: 0.1.0
+version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
 homepage: "https://github.com/osom8979/osom-skills"

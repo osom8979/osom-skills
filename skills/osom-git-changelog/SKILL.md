@@ -1,5 +1,5 @@
 ---
-name: git-changelog
+name: osom-git-changelog
 description: |
   Git 커밋 히스토리를 분석하여 CHANGELOG를 생성하거나 업데이트합니다.
   Conventional Commits 형식에 따라 변경사항을 분류합니다.

@@ -1,5 +1,5 @@
 ---
-name: develop
+name: osom-develop
 description: |
   승인된 플랜을 Phase로 쪼개어 역할 스킬에 분배하고 병렬 개발을 조율하는 파이프라인 스킬입니다.
   각 Phase 완료마다 빌드 검증 → 커밋 → 체크리스트 갱신을 순환 수행합니다. `/kickoff`의 Plan 단계(또는 수동 `/plan-*` 리뷰) 승인 후에 사용하세요.
