@@ -17,8 +17,8 @@ keywords: ["rules", "governance", "docs", "claude-md"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 규칙 문서 위치(`Rules directory`, `Structure doc`, `Code style doc` 등)를 파악합니다.
-2. `.osom-skills`의 해당 값이 없거나 파일이 없으면 `CLAUDE.md`와 기존 `docs/` 디렉토리를 훑어 규칙 체계를 탐색하고, 필요한 경우 사용자에게 `"규칙 문서 위치를 알려주세요"`를 먼저 묻습니다.
+1. 프로젝트 루트의 `STRUCTURE.md`에서 규칙 문서 위치(`Rules directory`, `Structure doc`, `Code style doc`)를 파악합니다.
+2. `STRUCTURE.md`가 없거나 해당 값이 비어 있으면 사용자가 사용하는 인덱스 파일(`CLAUDE.md` / `AGENTS.md` 등)과 기존 `docs/` 디렉토리를 훑어 규칙 체계를 탐색하고, 필요한 경우 사용자에게 `"규칙 문서 위치를 알려주세요"`를 먼저 묻습니다.
 
 ## 규칙
 
@@ -92,6 +92,6 @@ keywords: ["rules", "governance", "docs", "claude-md"]
 - **반드시 대상 파일을 먼저 읽고 현재 상태를 확인하세요.**
 - **기존 포맷과 일관성을 유지하세요** (마크다운 테이블, 코드 블록 등).
 - **변경 전 사용자 확인을 받으세요.**
-- **연쇄 업데이트를 놓치지 마세요** — 특히 `CLAUDE.md` 인덱스와 `structure.md` 요약표.
+- **연쇄 업데이트를 놓치지 마세요** — 특히 사용자의 인덱스 파일(`CLAUDE.md`/`AGENTS.md`)과 `structure.md` 요약표.
 - **규칙 간 충돌 여부를 확인하세요.**
-- `.osom-skills`에 규칙 문서 경로가 정의되지 않은 프로젝트에서는, 위치를 먼저 물어보고 `.osom-skills`에 기록할 것을 제안합니다.
+- `STRUCTURE.md`에 규칙 문서 경로가 정의되지 않은 프로젝트에서는, 위치를 먼저 물어보고 `STRUCTURE.md`에 기록할 것을 제안합니다 (`/osom-init STRUCTURE.md`).

@@ -53,68 +53,81 @@ npx skills experimental_install
 npx skills remove
 ```
 
-## ⚙️ 프로젝트 설정 파일 `.osom-skills`
+## ⚙️ 프로젝트 ROOT 문서
 
-개발 파이프라인 스킬(`osom-plan-*`, `osom-develop`, `osom-kickoff`, `osom-react-review` 등)과 역할 스킬(`osom-react-page-builder`, `osom-react-component-builder` 등)은 프로젝트 루트의 `.osom-skills` 파일을 읽어 프로젝트 고유 정보(빌드 명령, 문서 경로, 활성화된 역할, 필수 동반 파일 등)를 파악합니다.
+개발 파이프라인 스킬(`osom-plan-*`, `osom-develop`, `osom-kickoff`, `osom-react-review` 등)과 역할 스킬(`osom-react-page-builder`, `osom-react-component-builder` 등)은 프로젝트 루트의 **도메인별 마크다운 문서 7종**을 읽어 프로젝트 고유 정보(빌드 명령, 디렉토리 구조, 활성 역할, 디자인/DB/아키텍처 정책 등)를 파악합니다.
 
-파일이 없으면 합리적인 기본값으로 동작하거나 사용자에게 질문하며, 파일이 있으면 그 값을 **그대로** 사용합니다. 처음 설정할 때는 `/osom-init`을 호출하면 프로젝트 상태(package.json, 디렉토리 구조, 기존 문서)를 감지해 드래프트를 만들어줍니다.
+처음 설정할 때는 `/osom-init`을 호출하세요. 자동으로 감지 가능한 부분(빌드 명령, 디렉토리 구조 등)은 채우고, 도메인 지식이 필요한 부분(디자인 가이드, DB 정책, 아키텍처)은 핵심 질문으로 사용자에게 물어 답변을 본문에 반영합니다.
 
-### 파일 위치
+### 만들어지는 파일
 
-```
-<project-root>/.osom-skills
-```
+| 파일 | 도메인 | 주요 사용 스킬 |
+| --- | --- | --- |
+| `COMMANDS.md`     | 빌드/타입체크/테스트/포맷/커밋 명령 매핑 | osom-develop, osom-integrate, osom-refactor, osom-react-review |
+| `STRUCTURE.md`    | 디렉토리 구조, 코드 스타일 문서 위치, 동반 파일 패턴, 규칙·플랜 디렉토리 | osom-react-page-builder, osom-react-component-builder, osom-doc-audit, osom-rule-manage |
+| `ROLES.md`        | 활성 역할(Enabled roles)과 Phase 의존 순서 | osom-develop, osom-kickoff, osom-plan-eng |
+| `GUARDRAILS.md`   | 안전 가드(push 금지, 래퍼 사용, 보호 파일 등) | osom-develop, osom-shadcn-manager, osom-react-review |
+| `DESIGN.md`       | UI/UX 가이드, 디자인 시스템 토큰, 접근성 기준 | osom-plan-design |
+| `DATABASE.md`     | DB 스키마 정책, RLS 모델, 마이그레이션 안전 규칙, 네이밍 | osom-plan-dba, osom-supabase-schema, osom-pgtap-best-practices |
+| `ARCHITECTURE.md` | 레이어 구성, 런타임 토폴로지, 핵심 모듈 경계 | osom-plan-eng, osom-hono-worker |
+
+> ⚠️ **AGENT.md / CLAUDE.md / AGENTS.md 같이 특정 AI 에이전트가 자동 참조하는 파일은 osom-skills이 만들지 않습니다.** 사용자가 자신의 AI 환경(Claude Code → `CLAUDE.md`, OpenAI Codex → `AGENTS.md` 등)에 맞는 인덱스 파일에서 위 7개 도메인 문서를 직접 링크해 사용하세요. 인덱스 예시:
+>
+> ```markdown
+> # CLAUDE.md
+>
+> 이 프로젝트의 ROOT 문서:
+> - [COMMANDS](./COMMANDS.md)
+> - [STRUCTURE](./STRUCTURE.md)
+> - [ROLES](./ROLES.md)
+> - [GUARDRAILS](./GUARDRAILS.md)
+> - [DESIGN](./DESIGN.md)
+> - [DATABASE](./DATABASE.md)
+> - [ARCHITECTURE](./ARCHITECTURE.md)
+> ```
 
 ### 파일 포맷 (Markdown)
 
-스킬이 섹션 제목으로 값을 찾으므로, 아래 섹션 이름을 유지하세요. 필요한 섹션만 채우면 되고, 없어도 됩니다.
+각 파일은 osom-skills 스킬이 섹션 헤더로 값을 찾으므로 헤더 이름을 유지해야 합니다. 자세한 섹션 사양과 예시는 `osom-init` 스킬의 [`rules/`](./skills/osom-init/rules/) 디렉토리를 참조하세요.
+
+`COMMANDS.md` 예시:
 
 ```markdown
-# .osom-skills — Project configuration for osom-skills
+# COMMANDS
 
-## Commands
-- Build/Check: `npm run check`
-- Typecheck: `npm run typecheck`
-- Test: `npm test`
-- Format: `npm run format`
-- Commit: `/osom-git-commit`
+## Build/Check
+`./npm run check`
 
-## Project documents
-- Structure doc: `docs/rules/structure.md`
-- Code style doc: `docs/rules/code-style.md`
-- Plans directory: `docs/plans/`
-- Rules directory: `docs/rules/`
+## Typecheck
+`./npm run typecheck`
+
+## Test
+`./npm test`
+
+## Format
+`./npm run format`
+
+## Commit
+`/osom-git-commit`
+```
+
+`ROLES.md` 예시:
+
+```markdown
+# ROLES
 
 ## Enabled roles
-- osom-react-page-builder
-- osom-react-component-builder
 - osom-shadcn-manager
+- osom-react-component-builder
+- osom-react-page-builder
 
 ## Phase dependency hints
 - osom-shadcn-manager → Phase 1 (no deps)
 - osom-react-component-builder → depends on osom-shadcn-manager
 - osom-react-page-builder → depends on osom-react-component-builder
-
-## Required companion files
-- `components/**/*.tsx`: `.stories.tsx`, `.test.tsx`
-- `pages/**/index.tsx`: `index.stories.tsx`, `index.test.tsx`
-- `hooks/**/*.ts`: `.test.ts`
-
-## Guardrails
-- Never push; commits only
-- Use `./npm`, `./npx`, `./node` wrappers (optional)
 ```
 
-각 섹션의 의미는 다음과 같습니다.
-
-| 섹션                         | 용도                                                                                 |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| `Commands`                   | 빌드·테스트·커밋 등 스킬이 호출할 명령 매핑                                          |
-| `Project documents`          | 스킬이 참조할 규칙/계획 문서 위치                                                    |
-| `Enabled roles`              | 현재 프로젝트에서 사용할 역할 스킬 목록 (orchestrator의 분배 대상)                   |
-| `Phase dependency hints`     | 역할 간 실행 순서 힌트                                                               |
-| `Required companion files`   | 경로 글롭 → 동반 파일(스토리·테스트 등). `osom-react-review`, `osom-doc-audit`이 누락을 검증 |
-| `Guardrails`                 | 스킬이 지켜야 할 제약 (예: push 금지)                                                |
+도메인 문서(`DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md`)는 자동 감지가 어려우므로 `/osom-init`이 도메인별 핵심 질문을 던져 답변을 본문에 반영합니다. 답변하지 않은 항목은 `_(미정)_`로 두고 나중에 `/osom-init <FILE>`로 보완합니다.
 
 ## 🛠️ 제공하는 스킬 목록
 
@@ -134,7 +147,7 @@ npx skills remove
 
 ### 개발 파이프라인
 
-기능 요청 한 건을 "4관점 기획 → 분업 개발 → 통합 → 리팩토링 → 리뷰 → 커밋" 흐름으로 처리합니다. `.osom-skills` 설정에 따라 프로젝트별로 동작을 맞춥니다.
+기능 요청 한 건을 "4관점 기획 → 분업 개발 → 통합 → 리팩토링 → 리뷰 → 커밋" 흐름으로 처리합니다. ROOT 문서(`COMMANDS.md`, `STRUCTURE.md`, `ROLES.md` 등)의 값에 따라 프로젝트별로 동작을 맞춥니다.
 
 | 스킬 이름 | 주요 기능 | 주요 키워드 |
 | :--- | :--- | :--- |
@@ -152,7 +165,7 @@ npx skills remove
 
 | 스킬 이름 | 주요 기능 | 주요 키워드 |
 | :--- | :--- | :--- |
-| [`osom-init`](./skills/osom-init/SKILL.md) | 프로젝트 상태를 감지해 `.osom-skills` 설정 파일을 생성·갱신·검증 | osom-skills, init, config, setup |
+| [`osom-init`](./skills/osom-init/SKILL.md) | 프로젝트 ROOT 도메인 문서 7종(COMMANDS/STRUCTURE/ROLES/GUARDRAILS/DESIGN/DATABASE/ARCHITECTURE)을 자동 감지+핵심 질문으로 생성·갱신·검증 | init, config, setup, docs |
 | [`osom-doc-audit`](./skills/osom-doc-audit/SKILL.md) | 문서(CLAUDE.md, docs/, 스킬·에이전트 정의)와 실제 코드 상태의 정합성 검증 | audit, docs, consistency |
 | [`osom-rule-manage`](./skills/osom-rule-manage/SKILL.md) | 자연어 요청을 받아 프로젝트 규칙 문서의 적절한 위치에 규칙을 추가/수정/삭제 | rules, governance, docs |
 

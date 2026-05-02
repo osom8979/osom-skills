@@ -17,8 +17,8 @@ keywords: ["integration", "routes", "i18n", "types", "wrangler"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents**와 **Commands**(Build/Check, Typecheck)를 확인합니다.
-2. 다음 규칙 문서를 (있다면) 읽어 라우트/i18n 구조를 파악합니다: 구조 문서, 라우트 규칙 문서, i18n 규칙 문서.
+1. 프로젝트 루트의 `STRUCTURE.md`(Structure doc, Rules directory)와 `COMMANDS.md`(Build/Check, Typecheck)를 확인합니다.
+2. `STRUCTURE.md`가 가리키는 구조 문서, 그리고 `Rules directory` 안의 라우트 규칙 / i18n 규칙 문서를 (있다면) 읽어 통합 대상 구조를 파악합니다.
 
 ## 규칙
 
@@ -35,7 +35,7 @@ keywords: ["integration", "routes", "i18n", "types", "wrangler"]
 1. `git diff --name-only` (또는 `git diff --name-only HEAD~<N>`)로 변경된 파일 목록 확인.
 2. 변경된 파일에 따라 관련 검증 항목만 실행.
 3. 누락 발견 시 **직접 수정**합니다.
-4. `.osom-skills`의 **Commands → Build/Check**를 실행해 최종 빌드 검증.
+4. `COMMANDS.md`의 `Build/Check`를 실행해 최종 빌드 검증.
 
 ## 출력 형식
 

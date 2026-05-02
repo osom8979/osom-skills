@@ -17,8 +17,9 @@ keywords: ["plan", "dba", "schema", "rls", "migration", "postgres"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 DB 규칙 문서(예: `postgres/structure.md`, `conventions.md`, `sql-naming.md`) 경로를 파악합니다.
-2. DB 스키마 디렉토리(예: `postgres/`)를 훑어 현재 도메인 구조·테이블 목록·기존 RLS 패턴을 파악합니다.
+1. 프로젝트 루트의 `DATABASE.md`를 읽어 **DB 엔진, 마이그레이션 도구, 스키마 위치, RLS 정책, SQL 네이밍, 마이그레이션 안전 규칙**을 파악합니다. (없거나 미정 항목이 많으면 사용자에게 `/osom-init DATABASE.md` 호출을 안내)
+2. `DATABASE.md`가 가리키는 추가 규칙 문서(예: `docs/rules/sql-naming.md`, `docs/rules/migration-safety.md`)가 있으면 함께 읽습니다.
+3. DB 스키마 디렉토리(`DATABASE.md`의 `Schema location` 값 — 예: `supabase/migrations/`, `postgres/`)를 훑어 현재 도메인 구조·테이블 목록·기존 RLS 패턴을 파악합니다.
 
 ## 규칙
 
@@ -70,5 +71,5 @@ keywords: ["plan", "dba", "schema", "rls", "migration", "postgres"]
 ## 주의사항
 
 - **이 스킬은 분석만 합니다** — 스키마나 마이그레이션을 작성하지 마세요. 작성은 `/supabase-schema` 등 역할 스킬이 담당합니다.
-- **DB 레이어가 없는 프로젝트**에서는 이 스킬 호출을 건너뛰세요. `.osom-skills`에 postgres 관련 문서가 없거나 스키마 디렉토리가 없으면 DBA 관점 리뷰는 해당 없음입니다.
+- **DB 레이어가 없는 프로젝트**에서는 이 스킬 호출을 건너뛰세요. `DATABASE.md`가 없거나 스키마 디렉토리가 없으면 DBA 관점 리뷰는 해당 없음입니다.
 - 비즈니스/기술/UX 영향은 각각 `/plan-ceo`, `/plan-eng`, `/plan-design`에서 다룹니다.

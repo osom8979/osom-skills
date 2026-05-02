@@ -22,7 +22,7 @@ keywords:
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills` 또는 `CLAUDE.md`에서 **postgres 디렉토리, SQL 네이밍 밴드, 테스트 실행 명령**을 확인합니다.
+1. 프로젝트 루트의 `DATABASE.md`에서 **DB engine, Schema location, SQL naming, DB testing**을 확인하고, `COMMANDS.md`의 `Test` 명령(또는 `DATABASE.md`가 명시한 별도 pgTAP 실행 명령)을 파악합니다.
 2. 기존 테스트 파일의 패턴(파일명, BEGIN/ROLLBACK 위치, plan 카운트 관리, 한국어/영어 주석 정책)을 먼저 읽고 따릅니다.
 3. **이 스킬의 일반 원칙은 프로젝트 고유 컨벤션보다 후순위**입니다.
 

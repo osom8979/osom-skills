@@ -17,9 +17,10 @@ keywords: ["hono", "cloudflare-workers", "durable-object", "api", "backend"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 Worker 구조 문서 경로(있다면)를 읽습니다.
-2. 현재 Worker 진입점 파일(예: `<worker-root>/index.ts`)을 읽어 라우트 등록 구조를 파악합니다.
-3. `wrangler.json` / `wrangler.toml`의 바인딩을 확인합니다.
+1. 프로젝트 루트의 `ARCHITECTURE.md`를 읽어 Backend framework·Runtime·Client-server contract·State 정책을 확인합니다.
+2. `STRUCTURE.md`의 `Structure doc`/`Rules directory`에서 Worker 구조 문서 경로(있다면)를 읽습니다.
+3. 현재 Worker 진입점 파일(예: `<worker-root>/index.ts`)을 읽어 라우트 등록 구조를 파악합니다.
+4. `wrangler.json` / `wrangler.toml`의 바인딩을 확인합니다.
 
 ## 소유 디렉토리 예시
 

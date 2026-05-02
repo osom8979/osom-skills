@@ -17,8 +17,8 @@ keywords: ["refactor", "code-quality", "cleanup", "duplication"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents**에 명시된 code-style / component / page 규칙 문서를 (있다면) 읽습니다.
-2. **Commands → Build/Check**를 확인해 빌드 검증 명령을 확인합니다.
+1. 프로젝트 루트의 `STRUCTURE.md`에 명시된 `Code style doc`과 `Rules directory` 안의 컴포넌트/페이지 규칙 문서를 (있다면) 읽습니다.
+2. `COMMANDS.md`의 `Build/Check`를 확인해 빌드 검증 명령을 파악합니다.
 
 ## 대상 파악
 
@@ -48,7 +48,7 @@ git diff --name-only HEAD~1
 2. 각 파일을 읽고 규칙을 적용.
 3. 리팩토링이 필요하면 수정.
 4. 리팩토링이 불필요하면 "변경 없음" 보고.
-5. `.osom-skills`의 **Commands → Build/Check**를 실행해 빌드 검증.
+5. `COMMANDS.md`의 `Build/Check`를 실행해 빌드 검증.
 
 ## 출력 형식
 

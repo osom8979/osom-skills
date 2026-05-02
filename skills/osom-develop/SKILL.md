@@ -19,8 +19,12 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 작업 시작 전 반드시 다음을 읽으세요.
 
-1. 프로젝트 루트의 `.osom-skills` — **Commands**(Build/Check, Test, Commit), **Project documents**(구조·스타일 문서), **Enabled roles**(활성 역할 스킬), **Phase dependency hints**(실행 순서 힌트).
-2. `.osom-skills`의 **Enabled roles**에 있는 역할 스킬의 `SKILL.md`를 훑어 각 역할의 산출물과 규칙을 파악합니다.
+1. 프로젝트 루트의 ROOT 문서:
+   - `COMMANDS.md` — `Build/Check`, `Test`, `Commit` 명령
+   - `STRUCTURE.md` — 구조·스타일 문서, `Plans directory` 위치
+   - `ROLES.md` — `Enabled roles`(활성 역할), `Phase dependency hints`(실행 순서)
+   - `GUARDRAILS.md` — 제약(예: 래퍼 사용, push 금지)
+2. `ROLES.md`의 `Enabled roles`에 있는 역할 스킬의 `SKILL.md`를 훑어 각 역할의 산출물과 규칙을 파악합니다.
 
 ## 규칙
 
@@ -36,8 +40,8 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 사용자 입력을 분석하여 다음을 결정합니다.
 
-1. **어떤 역할 스킬이 필요한지** 식별 — `.osom-skills`의 **Enabled roles**에 있는 것 중에서만 선택. ([역할 분배 가이드](rules/role-distribution-guide.md))
-2. **Phase 종속성** 파악 — **Phase dependency hints** 활용.
+1. **어떤 역할 스킬이 필요한지** 식별 — `ROLES.md`의 `Enabled roles`에 있는 것 중에서만 선택. ([역할 분배 가이드](rules/role-distribution-guide.md))
+2. **Phase 종속성** 파악 — `ROLES.md`의 `Phase dependency hints` 활용.
 3. **작업 단위** 분해 — 각 역할에 줄 구체적인 지시.
 
 ### Step 2: Phase 구성 및 출력
@@ -94,17 +98,17 @@ Phase N 실행 → ...
 
 #### 3-2. 빌드 검증
 
-Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/Check**를 실행합니다.
+Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을 실행합니다.
 
 빌드 실패 시 해당 Phase 내에서 수정합니다. 다음 Phase로 넘어가지 마세요.
 
 #### 3-3. 커밋
 
-빌드 통과 후 `.osom-skills`의 **Commands → Commit**에 정의된 스킬(기본 `/git-commit`)으로 커밋합니다.
+빌드 통과 후 `COMMANDS.md`의 `Commit` 섹션에 정의된 스킬(기본 `/osom-git-commit`)으로 커밋합니다.
 
 #### 3-4. 체크리스트 갱신
 
-`.osom-skills`의 **Project documents → Plans directory** 내 해당 플랜 파일의 TODO 체크리스트를 갱신합니다. 이 Phase에서 완료한 항목을 `- [ ]` → `- [x]`로 변경합니다.
+`STRUCTURE.md`의 `Plans directory` 내 해당 플랜 파일의 TODO 체크리스트를 갱신합니다. 이 Phase에서 완료한 항목을 `- [ ]` → `- [x]`로 변경합니다.
 
 ```markdown
 # 예시: <plans-dir>/social-login.md
@@ -124,7 +128,7 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
 
 ### Step 4: 최종 빌드 검증
 
-모든 Phase 완료 후 `.osom-skills`의 **Commands → Build/Check**를 한 번 더 실행합니다.
+모든 Phase 완료 후 `COMMANDS.md`의 `Build/Check`를 한 번 더 실행합니다.
 
 ### Step 5: 문서 정합성 체크
 
@@ -162,4 +166,4 @@ Phase 내 모든 작업이 완료되면 `.osom-skills`의 **Commands → Build/C
 
 - **절대 push하지 마세요** — 커밋까지만 수행, push는 사용자가 수동으로.
 - 편집마다 포매터/린터/타입체커/테스트를 훅으로 자동 실행하는 프로젝트에서는 각 역할이 별도로 수행할 필요가 없습니다. 프로젝트 설정(`.claude/settings.json`)을 따르세요.
-- `.osom-skills`의 **Guardrails**에 있는 제약(예: `./npm` 래퍼 사용)을 반드시 지키세요.
+- `GUARDRAILS.md`에 있는 제약(예: `./npm` 래퍼 사용)을 반드시 지키세요.

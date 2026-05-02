@@ -13,4 +13,4 @@
 git diff --name-only HEAD~1 | grep -E '\.(tsx?|ts)$'
 ```
 
-`.osom-skills`의 **Project documents → Code style doc** 값이 있으면 그 문서가 우선합니다.
+`STRUCTURE.md`의 `Code style doc` 값이 있으면 그 문서가 우선합니다.

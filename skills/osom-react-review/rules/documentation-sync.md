@@ -10,4 +10,4 @@
 | `types/`      | `<docs-root>/directory-rules/types.md`     | 타입 목록에 신규 파일 반영     |
 | `routes/`     | `<docs-root>/directory-rules/routes.md`    | 라우트 목록에 신규 파일 반영   |
 
-`<docs-root>`는 `.osom-skills`의 **Project documents → Rules directory** 값입니다. 해당 문서가 없거나 프로젝트가 이 관례를 쓰지 않으면 항목을 건너뜁니다.
+`<docs-root>`는 `STRUCTURE.md`의 `Rules directory` 값입니다. 해당 문서가 없거나 프로젝트가 이 관례를 쓰지 않으면 항목을 건너뜁니다.

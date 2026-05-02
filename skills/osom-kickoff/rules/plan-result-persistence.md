@@ -1,6 +1,6 @@
 # Plan 결과 파일 저장 (필수)
 
-Plan 단계에서 합성된 방향을 `.osom-skills`의 **Project documents → Plans directory**에 markdown 파일로 **반드시** 저장합니다.
+Plan 단계에서 합성된 방향을 `STRUCTURE.md`의 `Plans directory` 값에 해당하는 디렉토리에 markdown 파일로 **반드시** 저장합니다.
 
 파일에 포함되어야 할 내용:
 

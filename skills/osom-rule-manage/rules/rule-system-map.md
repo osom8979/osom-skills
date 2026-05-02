@@ -1,12 +1,13 @@
 # 규칙 체계 맵 (일반형)
 
-실제 파일 경로는 프로젝트마다 다릅니다. `.osom-skills`의 값으로 치환해 사용하세요.
+실제 파일 경로는 프로젝트마다 다릅니다. ROOT 도메인 문서(`STRUCTURE.md` 등)의 값으로 치환해 사용하세요.
 
 ## 1. 진입점
 
-| 역할              | 일반적 위치 |
-| ----------------- | ----------- |
-| 프로젝트 진입점   | `CLAUDE.md` |
+| 역할                        | 일반적 위치 |
+| --------------------------- | ----------- |
+| 사용자 환경 인덱스          | `CLAUDE.md`(Claude Code) / `AGENTS.md`(Codex 등) — 사용자가 직접 관리 |
+| osom-skills ROOT 도메인 문서| `COMMANDS.md`, `STRUCTURE.md`, `ROLES.md`, `GUARDRAILS.md`, `DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md` |
 
 ## 2. 코드 규칙 문서 (Rules directory 하위)
 

@@ -17,8 +17,9 @@ keywords: ["plan", "design", "ux", "components", "accessibility"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 디자인/컴포넌트 규칙 문서가 있으면 읽습니다.
-2. 기존 컴포넌트 디렉토리(`components/` 또는 프로젝트 관례 위치)를 훑어 이미 존재하는 UI 자산과 카테고리를 파악합니다.
+1. 프로젝트 루트의 `DESIGN.md`를 읽어 디자인 시스템·토큰·테마·반응형 정책·컴포넌트 작성 원칙·접근성 목표를 파악합니다. (없으면 사용자에게 `/osom-init DESIGN.md` 호출을 안내)
+2. 프로젝트 루트의 `STRUCTURE.md`의 **Code style doc** / **Required companion files**도 함께 읽어 컴포넌트 동반 파일(스토리·테스트) 규칙을 파악합니다.
+3. 기존 컴포넌트 디렉토리(`components/` 또는 프로젝트 관례 위치)를 훑어 이미 존재하는 UI 자산과 카테고리를 파악합니다.
 
 ## 규칙
 

@@ -7,7 +7,7 @@
 - 빌드 에러가 없는지
 
 ```bash
-# .osom-skills의 Commands → Typecheck / Build/Check 사용
+# COMMANDS.md의 Typecheck / Build/Check 명령 사용
 <typecheck-command>
 ```
 

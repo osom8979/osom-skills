@@ -17,8 +17,8 @@ keywords: ["supabase", "postgres", "rls", "migration", "edge-function", "pgtap"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션의 postgres/DB 규칙 문서 경로를 확인합니다.
-2. 해당 문서들(예: `docs/rules/postgres/structure.md`, `sql-naming.md`, `conventions.md`)을 읽어 **디렉토리 구조·SQL 네이밍 밴드·RLS/트리거 컨벤션**을 파악합니다. 문서가 없으면 기존 `postgres/` 디렉토리의 기존 파일에서 규칙을 역추출합니다.
+1. 프로젝트 루트의 `DATABASE.md`에서 **Engine, Migration tool, Schema location, RLS policy, RLS auth subject, SQL naming, Migration safety**를 확인합니다.
+2. `DATABASE.md`가 가리키는 추가 규칙 문서(예: `docs/rules/postgres/structure.md`, `sql-naming.md`, `migration-safety.md`)와 `STRUCTURE.md`의 `Rules directory` 안의 관련 문서를 읽어 **디렉토리 구조·SQL 네이밍 밴드·RLS/트리거 컨벤션**을 파악합니다. 문서가 없으면 기존 스키마 디렉토리의 파일에서 규칙을 역추출합니다.
 
 ## 작업 디렉토리
 

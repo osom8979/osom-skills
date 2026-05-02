@@ -19,8 +19,8 @@ keywords: ["react", "page", "route", "storybook", "controlled-component"]
 
 작업 시작 전 가능하다면 다음을 확인하세요.
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents**(구조/스타일 문서 경로)와 **Required companion files**(필수 동반 파일 규칙)를 읽습니다.
-2. `.osom-skills`가 없으면 `CLAUDE.md`, `README.md`, 기존 페이지 디렉토리를 훑어 프로젝트 규약을 추정합니다.
+1. 프로젝트 루트의 `STRUCTURE.md`에서 `Structure doc`, `Code style doc`, `Required companion files`를 읽습니다.
+2. `STRUCTURE.md`가 없으면 `README.md`와 기존 페이지 디렉토리를 훑어 프로젝트 규약을 추정합니다.
 3. 기존 페이지 파일을 최소 2개 이상 읽어 **네이밍·레이아웃·상태 관리 패턴**을 파악한 뒤 동일한 스타일을 유지합니다.
 
 ## 산출물

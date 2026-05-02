@@ -17,11 +17,11 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 다음 섹션을 읽습니다.
-   - **Project documents** — 구조·스타일 문서 경로
-   - **Enabled roles** — 활성 역할 스킬 목록
-   - **Phase dependency hints** — 역할 간 종속성 힌트
-2. `.osom-skills`가 가리키는 구조 문서와 `CLAUDE.md`를 읽어 현재 아키텍처·레이어 구성을 파악합니다.
+1. 프로젝트 루트의 다음 ROOT 문서를 읽습니다.
+   - `ARCHITECTURE.md` — 런타임·레이어·통신 모델 (이번 기능이 어디에 들어가는지 판단)
+   - `STRUCTURE.md` — `Structure doc`, `Code style doc`, 디렉토리 구조
+   - `ROLES.md` — `Enabled roles`(활성 역할), `Phase dependency hints`(종속성)
+2. `STRUCTURE.md`가 가리키는 구조 문서를 추가로 읽어 현재 아키텍처·레이어 구성을 보강합니다.
 3. **추측하지 말고 실제 코드를 읽어** 영향 받을 파일·모듈을 확인합니다.
 
 ## 규칙
@@ -68,4 +68,4 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 - **이 스킬은 분석만 합니다** — 코드를 수정하지 마세요.
 - **실제 코드를 읽고 판단하세요** — 추측 기반 영향 범위는 신뢰할 수 없습니다.
 - 비즈니스/UX/DB 영향은 각각 `/plan-ceo`, `/plan-design`, `/plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
-- 활성이 아닌 역할 스킬(`.osom-skills`의 Enabled roles에 없음)은 제안하지 마세요.
+- 활성이 아닌 역할 스킬(`ROLES.md`의 `Enabled roles`에 없음)은 제안하지 마세요.

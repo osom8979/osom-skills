@@ -17,8 +17,8 @@ keywords: ["plan", "ceo", "business", "mvp", "priority"]
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 **Project documents** 섹션을 확인해 프로덕트 컨텍스트 문서(있다면 roadmap, OKR, 제품 개요 등)를 찾습니다.
-2. `CLAUDE.md`, `README.md`, 그리고 프로젝트에 존재하는 제품 소개 문서를 훑어 현재 제품이 무엇을 지향하는지 파악합니다.
+1. 프로젝트 루트의 `STRUCTURE.md`를 읽어 `Rules directory` 위치를 파악하고, 그 안에 프로덕트 컨텍스트 문서(있다면 roadmap, OKR, 제품 개요 등)가 있으면 함께 읽습니다.
+2. `README.md`와 사용자가 명시한 인덱스 파일(예: `CLAUDE.md`/`AGENTS.md`)에 제품 소개가 있다면 훑어 현재 제품이 무엇을 지향하는지 파악합니다.
 
 ## 규칙
 

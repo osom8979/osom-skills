@@ -1,6 +1,6 @@
 # 종속성 / 실행 순서
 
-`.osom-skills`의 **Phase dependency hints**를 참고해 역할 간 실행 순서를 제안합니다.
+`ROLES.md`의 **Phase dependency hints** 섹션을 참고해 역할 간 실행 순서를 제안합니다.
 
 ```
 Phase 1 (병렬): 역할 A, 역할 B

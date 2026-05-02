@@ -14,12 +14,17 @@
 | 라우트, route, path                    | `<rules-root>/directory-rules/routes.md`    |
 | 번역, i18n, locale                     | `<rules-root>/directory-rules/i18n.md`      |
 | 에셋, 아이콘, SVG                      | `<rules-root>/directory-rules/assets.md`    |
-| 명령어, 빌드, 배포                     | `CLAUDE.md`                                 |
-| SQL, 스키마, RLS, 트리거, 마이그레이션 | `<rules-root>/postgres/conventions.md`      |
+| 명령어, 빌드, 배포                     | `COMMANDS.md`                               |
+| 활성 역할, Phase 의존, 작업 분배       | `ROLES.md`                                  |
+| 가드, 금지 사항, 안전 규칙             | `GUARDRAILS.md`                             |
+| 디자인 시스템, UI 토큰, 접근성         | `DESIGN.md`                                 |
+| 아키텍처, 런타임, 레이어, 통신         | `ARCHITECTURE.md`                           |
+| DB 정책, 마이그레이션 안전 규칙        | `DATABASE.md`                               |
+| SQL, 스키마, RLS, 트리거, 마이그레이션 | `<rules-root>/postgres/conventions.md` 또는 `DATABASE.md` |
 | SQL 네이밍, 밴드, 테스트 파일          | `<rules-root>/postgres/sql-naming.md`       |
 | postgres 구조, 디렉토리                | `<rules-root>/postgres/structure.md`        |
 | 스킬, skill                            | `.claude/skills/`                           |
 | 에이전트, agent                        | `.claude/agents/`                           |
 | hook(설정), 권한                       | `.claude/settings.json`                     |
 
-`<rules-root>`는 `.osom-skills`의 **Project documents → Rules directory** 값입니다. 키워드가 모호하면 사용자에게 확인합니다.
+`<rules-root>`는 `STRUCTURE.md`의 `Rules directory` 값입니다. 키워드가 모호하면 사용자에게 확인합니다.

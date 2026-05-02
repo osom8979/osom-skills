@@ -8,4 +8,4 @@
 
 **Why**: 작업 복구가 편하도록 최대한 작은 단위로 커밋합니다. 큰 변경을 한 번에 커밋하면 롤백 시 전체를 되돌려야 합니다.
 
-**커밋 규칙**: `.osom-skills`의 **Commands → Commit**에 정의된 스킬(기본 `/git-commit`)을 호출.
+**커밋 규칙**: `COMMANDS.md`의 `Commit` 섹션에 정의된 스킬(기본 `/osom-git-commit`)을 호출.

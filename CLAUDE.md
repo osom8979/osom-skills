@@ -80,5 +80,5 @@ skills/
 
 ## 관련 문서
 
-- [README.md](./README.md) — 스킬 목록, 설치 가이드, `.osom-skills` 포맷
+- [README.md](./README.md) — 스킬 목록, 설치 가이드, ROOT 도메인 문서 7종(`COMMANDS.md`/`STRUCTURE.md`/`ROLES.md`/`GUARDRAILS.md`/`DESIGN.md`/`DATABASE.md`/`ARCHITECTURE.md`) 사양
 - 각 스킬의 `SKILL.md` — 해당 스킬의 진입점과 규칙 인덱스

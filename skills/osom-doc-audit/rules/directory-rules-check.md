@@ -1,6 +1,6 @@
 # 디렉토리별 파일 규칙 검증
 
-`.osom-skills`의 **Project documents → Rules directory**에 속하는 문서(예: `structure.md`, `directory-rules/*.md`)의 목록이 실제 디렉토리 내용과 일치하는지 확인합니다.
+`STRUCTURE.md`의 `Rules directory`에 속하는 문서(예: `structure.md`, `directory-rules/*.md`)의 목록이 실제 디렉토리 내용과 일치하는지 확인합니다.
 
 ## 확인 대상 (프로젝트에 존재하는 것만)
 
@@ -15,6 +15,6 @@
 
 ## 필수 동반 파일 누락
 
-`.osom-skills`의 **Required companion files** 글롭 매칭 규칙으로 누락 파일을 검출합니다.
+`STRUCTURE.md`의 `Required companion files` 글롭 매칭 규칙으로 누락 파일을 검출합니다.
 
 존재하지 않는 디렉토리는 검증에서 자동 제외합니다.

@@ -19,11 +19,11 @@ keywords: ["react", "typescript", "qa", "gate", "review", "lint", "test", "secur
 
 ## 사전 준비
 
-1. 프로젝트 루트의 `.osom-skills`에서 다음을 확인합니다.
-   - **Commands**: Build/Check, Test
-   - **Project documents**: code-style 문서, 구조 문서 경로
-   - **Required companion files**: 필수 동반 파일 규칙
-2. 해당 규칙 문서들을 (있다면) 읽어 검증 기준을 파악합니다.
+1. 프로젝트 루트의 ROOT 문서에서 다음을 확인합니다.
+   - `COMMANDS.md`: `Build/Check`, `Test`
+   - `STRUCTURE.md`: `Code style doc`, `Structure doc`, `Required companion files`
+   - `GUARDRAILS.md`: 가드 항목 (검증 시 보안 샘플링과 충돌 항목 식별)
+2. `STRUCTURE.md`가 가리키는 규칙 문서들을 (있다면) 읽어 검증 기준을 파악합니다.
 
 ## 규칙
 
@@ -31,8 +31,8 @@ keywords: ["react", "typescript", "qa", "gate", "review", "lint", "test", "secur
 
 1. [코드 스타일 검증](rules/code-style-check.md) — alias, import *, React. 네임스페이스, 네이밍
 2. [필수 동반 파일](rules/required-companion-files.md) — `.stories.tsx`, `.test.tsx` 등 누락 검증
-3. [빌드 검증](rules/build-validation.md) — `Commands → Build/Check` 통과 여부
-4. [테스트 실행](rules/test-execution.md) — `Commands → Test` 전체 통과 여부
+3. [빌드 검증](rules/build-validation.md) — `COMMANDS.md`의 `Build/Check` 통과 여부
+4. [테스트 실행](rules/test-execution.md) — `COMMANDS.md`의 `Test` 전체 통과 여부
 5. [보안 샘플링](rules/security-sampling.md) — 시크릿, XSS, 인젝션, 민감 데이터 로깅
 6. [Controlled Component 규칙](rules/controlled-component-check.md) — 컴포넌트 디렉토리 변경 시 적용
 7. [문서 동기화](rules/documentation-sync.md) — `directory-rules/*.md` 최신화 여부
