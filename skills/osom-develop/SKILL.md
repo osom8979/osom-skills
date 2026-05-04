@@ -2,7 +2,7 @@
 name: osom-develop
 description: |
   승인된 플랜을 Phase로 쪼개어 역할 스킬에 분배하고 병렬 개발을 조율하는 파이프라인 스킬입니다.
-  각 Phase 완료마다 빌드 검증 → 커밋 → 체크리스트 갱신을 순환 수행합니다. `/osom-kickoff`의 Plan 단계(또는 수동 `/osom-plan-*` 리뷰) 승인 후에 사용하세요.
+  각 Phase 완료마다 빌드 검증 → 체크리스트 갱신 → 커밋을 순환 수행합니다. `/osom-kickoff`의 Plan 단계(또는 수동 `/osom-plan-*` 리뷰) 승인 후에 사용하세요.
 version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
@@ -62,14 +62,14 @@ Phase 2 (Phase 1 완료 후)
 진행할까요? [Y/n]
 ```
 
-### Step 3: Phase별 실행 — [실행 → 검증 → 커밋 → 체크리스트] 순환
+### Step 3: Phase별 실행 — [실행 → 검증 → 체크리스트 → 커밋] 순환
 
-사용자 확인 후 Phase를 순서대로 실행합니다. **각 Phase 완료 시마다 빌드 검증, 커밋, 체크리스트 갱신을 수행한 후** 다음 Phase로 넘어갑니다.
+사용자 확인 후 Phase를 순서대로 실행합니다. **각 Phase 완료 시마다 빌드 검증, 체크리스트 갱신, 커밋을 수행한 후** 다음 Phase로 넘어갑니다.
 
 ```
-Phase 1 실행 → 빌드 검증 → 커밋 → 체크리스트 갱신
+Phase 1 실행 → 빌드 검증 → 체크리스트 갱신 → 커밋
   ↓
-Phase 2 실행 → 빌드 검증 → 커밋 → 체크리스트 갱신
+Phase 2 실행 → 빌드 검증 → 체크리스트 갱신 → 커밋
   ↓
 Phase N 실행 → ...
 ```
@@ -101,13 +101,9 @@ Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을
 
 빌드 실패 시 해당 Phase 내에서 수정합니다. 다음 Phase로 넘어가지 마세요.
 
-#### 3-3. 커밋
+#### 3-3. 체크리스트 갱신
 
-빌드 통과 후 `COMMANDS.md`의 `Commit` 섹션에 정의된 스킬(기본 `/osom-git-commit`)으로 커밋합니다.
-
-#### 3-4. 체크리스트 갱신
-
-`STRUCTURE.md`의 `Plans directory` 내 해당 플랜 파일의 TODO 체크리스트를 갱신합니다. 이 Phase에서 완료한 항목을 `- [ ]` → `- [x]`로 변경합니다.
+빌드 통과 후 `STRUCTURE.md`의 `Plans directory` 내 해당 플랜 파일의 TODO 체크리스트를 갱신합니다. 이 Phase에서 완료한 항목을 `- [ ]` → `- [x]`로 변경합니다.
 
 ```markdown
 # 예시: <plans-dir>/social-login.md
@@ -117,11 +113,15 @@ Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을
 - [ ] 프로필 페이지에 소셜 로그인 연동 ← Phase 2에서 진행 예정
 ```
 
+#### 3-4. 커밋
+
+체크리스트 갱신 후 `COMMANDS.md`의 `Commit` 섹션에 정의된 스킬(기본 `/osom-git-commit`)으로 커밋합니다. 체크리스트 변경분이 코드 변경분과 함께 같은 커밋에 포함됩니다.
+
 #### 3-5. Phase 완료 출력
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Phase 1/2] 완료 ✓ — committed & checklist updated
+[Phase 1/2] 완료 ✓ — checklist updated & committed
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
