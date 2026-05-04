@@ -18,7 +18,8 @@ keywords: ["react", "component", "controlled-component", "storybook", "testing-l
 ## 사전 준비
 
 1. 프로젝트 루트의 `STRUCTURE.md`에서 `Required companion files` 섹션을 읽어 동반 파일(스토리·테스트) 규칙을 확인합니다.
-2. 기존 컴포넌트 디렉토리를 훑어 **카테고리 구조와 네이밍 패턴**을 파악하고 동일한 스타일을 유지합니다.
+2. 프로젝트 루트의 `DESIGN.md`에서 `Component principles`(controlled-only 여부 등), `Form library`, `Icon set`을 읽어 본 컴포넌트가 따를 작성 원칙을 파악합니다 (있으면).
+3. 기존 컴포넌트 디렉토리를 훑어 **카테고리 구조와 네이밍 패턴**을 파악하고 동일한 스타일을 유지합니다.
 
 ## 산출물
 

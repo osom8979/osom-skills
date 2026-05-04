@@ -2,7 +2,7 @@
 name: osom-plan-design
 description: |
   기능 요청을 디자인/UX 관점에서 리뷰합니다. UX 방향, 필요한 컴포넌트, 기존 컴포넌트 재사용 가능성을 분석합니다.
-  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/kickoff`가 수행합니다.
+  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/osom-kickoff`가 수행합니다.
 version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
@@ -61,4 +61,4 @@ keywords: ["plan", "design", "ux", "components", "accessibility"]
 
 - **이 스킬은 분석만 합니다** — 코드를 수정하지 마세요.
 - **먼저 기존 자산을 조사**한 뒤 신규 제안을 하세요. 재사용 가능한 것을 놓치고 중복 컴포넌트를 만들지 않도록.
-- 비즈니스/기술/DB 영향은 각각 `/plan-ceo`, `/plan-eng`, `/plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
+- 비즈니스/기술/DB 영향은 각각 `/osom-plan-ceo`, `/osom-plan-eng`, `/osom-plan-dba`에서 다룹니다. 본인 관점에 집중하세요.

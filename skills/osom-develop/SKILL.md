@@ -2,7 +2,7 @@
 name: osom-develop
 description: |
   승인된 플랜을 Phase로 쪼개어 역할 스킬에 분배하고 병렬 개발을 조율하는 파이프라인 스킬입니다.
-  각 Phase 완료마다 빌드 검증 → 커밋 → 체크리스트 갱신을 순환 수행합니다. `/kickoff`의 Plan 단계(또는 수동 `/plan-*` 리뷰) 승인 후에 사용하세요.
+  각 Phase 완료마다 빌드 검증 → 커밋 → 체크리스트 갱신을 순환 수행합니다. `/osom-kickoff`의 Plan 단계(또는 수동 `/osom-plan-*` 리뷰) 승인 후에 사용하세요.
 version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
@@ -54,11 +54,11 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Phase 1 (병렬)
-  ▸ shadcn-manager — tooltip 컴포넌트 설치
-  ▸ react-component-builder — ProfileCard 생성
+  ▸ osom-shadcn-manager — tooltip 컴포넌트 설치
+  ▸ osom-react-component-builder — ProfileCard 생성
 
 Phase 2 (Phase 1 완료 후)
-  ▸ react-page-builder — 프로필 페이지 조합
+  ▸ osom-react-page-builder — 프로필 페이지 조합
 
 진행할까요? [Y/n]
 ```
@@ -83,8 +83,8 @@ Phase N 실행 → ...
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [Phase 1/2] 기반 작업 — 병렬 실행 중
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ▶ shadcn-manager: tooltip 설치 중...
-  ▶ react-component-builder: ProfileCard 생성 중...
+  ▶ osom-shadcn-manager: tooltip 설치 중...
+  ▶ osom-react-component-builder: ProfileCard 생성 중...
 ```
 
 같은 Phase 내 작업은 [역할 호출 규칙](rules/role-invocation-rules.md)에 따라 **반드시 병렬(동시)로 호출**합니다.
@@ -92,8 +92,8 @@ Phase N 실행 → ...
 각 작업 완료 시 출력:
 
 ```
-  ✓ shadcn-manager 완료 — tooltip.tsx 설치, stories 생성
-  ✓ react-component-builder 완료 — ProfileCard.tsx + stories + test
+  ✓ osom-shadcn-manager 완료 — tooltip.tsx 설치, stories 생성
+  ✓ osom-react-component-builder 완료 — ProfileCard.tsx + stories + test
 ```
 
 #### 3-2. 빌드 검증
@@ -132,7 +132,7 @@ Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을
 
 ### Step 5: 문서 정합성 체크
 
-변경된 파일을 기반으로 규칙 문서 갱신이 필요한지 확인합니다. 이 검증은 `/doc-audit`을 호출해 위임하거나, 다음 항목을 수기로 확인합니다.
+변경된 파일을 기반으로 규칙 문서 갱신이 필요한지 확인합니다. 이 검증은 `/osom-doc-audit`을 호출해 위임하거나, 다음 항목을 수기로 확인합니다.
 
 - 새 훅/컴포넌트/유틸리티/상수/타입/라우트 추가 → 해당 `directory-rules/<topic>.md` 갱신 필요?
 - 필수 동반 파일 누락 — `.stories.tsx`, `.test.tsx` 등
@@ -143,8 +143,8 @@ Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [Develop] 완료
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ✓ Phase 1: shadcn-manager, react-component-builder — committed
-  ✓ Phase 2: react-page-builder — committed
+  ✓ Phase 1: osom-shadcn-manager, osom-react-component-builder — committed
+  ✓ Phase 2: osom-react-page-builder — committed
   ✓ 최종 빌드 검증 통과
   ✓ 문서 정합성 확인
   ✓ 체크리스트 갱신 완료 (<plans-dir>/xxx.md)
@@ -159,7 +159,7 @@ Phase 내 모든 작업이 완료되면 `COMMANDS.md`의 `Build/Check` 명령을
   - pages/(app)/profile/index.tsx (신규)
   - ...
 
-다음 단계: /integrate → /refactor → /react-review
+다음 단계: /osom-integrate → /osom-refactor → /osom-react-review
 ```
 
 ## 주의사항

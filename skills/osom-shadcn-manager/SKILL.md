@@ -18,8 +18,9 @@ keywords: ["shadcn", "ui", "storybook", "react", "variants"]
 ## 사전 준비
 
 1. 프로젝트 루트의 `STRUCTURE.md`에서 `Required companion files` 섹션을 확인해 stories/test 요구 규칙을 파악합니다.
-2. `ls <components-root>/ui/`로 이미 설치된 컴포넌트를 확인합니다. 중복 설치 금지.
-3. 프로젝트가 `./npx` 등 래퍼를 쓰면 그것을 사용합니다(`GUARDRAILS.md` 참고).
+2. 프로젝트 루트의 `DESIGN.md`에서 `Design system`(shadcn/ui 사용 여부), `Design tokens`, `Theming`을 확인합니다 (있으면). 이 스킬은 `Design system`이 shadcn 계열일 때만 유효합니다.
+3. `ls <components-root>/ui/`로 이미 설치된 컴포넌트를 확인합니다. 중복 설치 금지.
+4. 프로젝트가 `./npx` 등 래퍼를 쓰면 그것을 사용합니다(`GUARDRAILS.md` 참고).
 
 ## 규칙
 

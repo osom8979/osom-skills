@@ -2,7 +2,7 @@
 name: osom-plan-eng
 description: |
   기능 요청을 엔지니어링 관점에서 리뷰합니다. 기술 타당성, 영향 범위, 필요한 역할 스킬, 종속성, 리스크를 분석합니다.
-  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/kickoff`가 수행합니다.
+  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/osom-kickoff`가 수행합니다.
 version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
@@ -51,9 +51,9 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
   - <path/to/file2>: ...
 
 👥 필요한 역할 스킬
-  - react-component-builder: ...
-  - react-page-builder: ...
-  - hono-worker: ...
+  - osom-react-component-builder: ...
+  - osom-react-page-builder: ...
+  - osom-hono-worker: ...
 
 🔗 종속성
   Phase 1: ...
@@ -67,5 +67,5 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 
 - **이 스킬은 분석만 합니다** — 코드를 수정하지 마세요.
 - **실제 코드를 읽고 판단하세요** — 추측 기반 영향 범위는 신뢰할 수 없습니다.
-- 비즈니스/UX/DB 영향은 각각 `/plan-ceo`, `/plan-design`, `/plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
+- 비즈니스/UX/DB 영향은 각각 `/osom-plan-ceo`, `/osom-plan-design`, `/osom-plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
 - 활성이 아닌 역할 스킬(`ROLES.md`의 `Enabled roles`에 없음)은 제안하지 마세요.

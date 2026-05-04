@@ -2,7 +2,7 @@
 name: osom-plan-ceo
 description: |
   기능 요청을 CEO(비즈니스) 관점에서 리뷰합니다. 비즈니스 임팩트, 우선순위, MVP 범위를 분석합니다.
-  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/kickoff`가 수행합니다.
+  코드를 수정하지 않고 분석만 합니다. 전체 4관점 리뷰와 방향 합성은 `/osom-kickoff`가 수행합니다.
 version: 1.0.0
 author: "osom8979 <osom8979@gmail.com>"
 license: "MIT"
@@ -55,4 +55,4 @@ keywords: ["plan", "ceo", "business", "mvp", "priority"]
 
 - **이 스킬은 분석만 합니다** — 코드를 수정하지 마세요.
 - **추측을 전제로 단정하지 마세요** — 확실하지 않은 비즈니스 가정은 사용자에게 먼저 확인합니다.
-- 기술 타당성/UX/DB 영향은 각각 `/plan-eng`, `/plan-design`, `/plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
+- 기술 타당성/UX/DB 영향은 각각 `/osom-plan-eng`, `/osom-plan-design`, `/osom-plan-dba`에서 다룹니다. 본인 관점에 집중하세요.

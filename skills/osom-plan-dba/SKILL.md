@@ -70,6 +70,6 @@ keywords: ["plan", "dba", "schema", "rls", "migration", "postgres"]
 
 ## 주의사항
 
-- **이 스킬은 분석만 합니다** — 스키마나 마이그레이션을 작성하지 마세요. 작성은 `/supabase-schema` 등 역할 스킬이 담당합니다.
+- **이 스킬은 분석만 합니다** — 스키마나 마이그레이션을 작성하지 마세요. 작성은 `/osom-supabase-schema` 등 역할 스킬이 담당합니다.
 - **DB 레이어가 없는 프로젝트**에서는 이 스킬 호출을 건너뛰세요. `DATABASE.md`가 없거나 스키마 디렉토리가 없으면 DBA 관점 리뷰는 해당 없음입니다.
-- 비즈니스/기술/UX 영향은 각각 `/plan-ceo`, `/plan-eng`, `/plan-design`에서 다룹니다.
+- 비즈니스/기술/UX 영향은 각각 `/osom-plan-ceo`, `/osom-plan-eng`, `/osom-plan-design`에서 다룹니다.
