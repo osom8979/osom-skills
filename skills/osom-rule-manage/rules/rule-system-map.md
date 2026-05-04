@@ -7,7 +7,7 @@
 | 역할                        | 일반적 위치 |
 | --------------------------- | ----------- |
 | 사용자 환경 인덱스          | `CLAUDE.md`(Claude Code) / `AGENTS.md`(Codex 등) — 사용자가 직접 관리 |
-| osom-skills ROOT 도메인 문서| `COMMANDS.md`, `STRUCTURE.md`, `ROLES.md`, `GUARDRAILS.md`, `DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md` |
+| osom-skills ROOT 도메인 문서| `COMMANDS.md`, `STRUCTURE.md`, `GUARDRAILS.md`, `DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md` |
 
 ## 2. 코드 규칙 문서 (Rules directory 하위)
 

@@ -22,9 +22,8 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 1. 프로젝트 루트의 ROOT 문서:
    - `COMMANDS.md` — `Build/Check`, `Test`, `Commit` 명령
    - `STRUCTURE.md` — 구조·스타일 문서, `Plans directory` 위치
-   - `ROLES.md` — `Enabled roles`(활성 역할), `Phase dependency hints`(실행 순서)
    - `GUARDRAILS.md` — 제약(예: 래퍼 사용, push 금지)
-2. `ROLES.md`의 `Enabled roles`에 있는 역할 스킬의 `SKILL.md`를 훑어 각 역할의 산출물과 규칙을 파악합니다.
+2. 설치된 역할 스킬(`.claude/skills/osom-*` 또는 `.claude/agents/`)을 훑어 각 역할의 산출물과 규칙을 파악합니다. 이번 작업의 맥락에 맞는 역할만 골라 사용합니다.
 
 ## 규칙
 
@@ -40,8 +39,8 @@ keywords: ["pipeline", "parallel", "orchestration", "phase", "develop"]
 
 사용자 입력을 분석하여 다음을 결정합니다.
 
-1. **어떤 역할 스킬이 필요한지** 식별 — `ROLES.md`의 `Enabled roles`에 있는 것 중에서만 선택. ([역할 분배 가이드](rules/role-distribution-guide.md))
-2. **Phase 종속성** 파악 — `ROLES.md`의 `Phase dependency hints` 활용.
+1. **어떤 역할 스킬이 필요한지** 식별 — 설치된 역할 스킬 중 작업 맥락에 맞는 것만 선택. ([역할 분배 가이드](rules/role-distribution-guide.md))
+2. **Phase 분리** 결정 — 출력물이 다음 작업의 입력이 되는 역할은 다음 Phase로 분리. Phase는 항상 순차 실행, 같은 Phase 내 작업만 병렬.
 3. **작업 단위** 분해 — 각 역할에 줄 구체적인 지시.
 
 ### Step 2: Phase 구성 및 출력

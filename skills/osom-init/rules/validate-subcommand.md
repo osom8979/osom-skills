@@ -1,6 +1,6 @@
 # validate 서브명령 세부
 
-`/osom-init validate`는 7개 ROOT 파일이 실제 프로젝트 상태와 일치하는지 검사합니다.
+`/osom-init validate`는 6개 ROOT 파일이 실제 프로젝트 상태와 일치하는지 검사합니다.
 
 ## 검사 항목
 
@@ -11,11 +11,6 @@
 ### `STRUCTURE.md`
 - `Structure doc`, `Code style doc`, `Plans directory`, `Rules directory` 경로가 실제로 존재하는지
 - `Required companion files` 글롭 패턴의 대상 파일이 프로젝트에 하나라도 있는지 (없으면 죽은 규칙 경고)
-
-### `ROLES.md`
-- `Enabled roles`의 각 역할이 osom-skills 저장소에 실제로 존재하는지
-- 활성 역할이 프로젝트 디렉토리/패키지 단서와 맞는지 (예: `osom-supabase-schema` 활성인데 `supabase/` 없음 → 경고)
-- `Phase dependency hints`가 활성 역할만 참조하는지
 
 ### `GUARDRAILS.md`
 - 가드 항목과 모순되는 흔적이 있는지 (예: "Never push" 가드가 있는데 최근 push가 있었는지는 검사하지 않음 — 단지 가드 항목 형식만 확인)
@@ -33,7 +28,6 @@
 [validate] ROOT 문서 검증 결과
   ✅ COMMANDS.md            (4/4 명령 모두 유효)
   ⚠️  STRUCTURE.md           (Plans directory `docs/plans/` 없음 — 디렉토리 만들거나 경로 수정)
-  ✅ ROLES.md               (5개 역할 모두 활성 단서와 일치)
   ✅ GUARDRAILS.md          (4개 항목)
   ⚠️  DESIGN.md              (8개 항목 중 3개 미정)
   ✅ DATABASE.md            (9개 항목 모두 채움)

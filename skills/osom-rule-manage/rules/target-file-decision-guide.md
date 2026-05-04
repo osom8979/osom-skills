@@ -15,7 +15,6 @@
 | 번역, i18n, locale                     | `<rules-root>/directory-rules/i18n.md`      |
 | 에셋, 아이콘, SVG                      | `<rules-root>/directory-rules/assets.md`    |
 | 명령어, 빌드, 배포                     | `COMMANDS.md`                               |
-| 활성 역할, Phase 의존, 작업 분배       | `ROLES.md`                                  |
 | 가드, 금지 사항, 안전 규칙             | `GUARDRAILS.md`                             |
 | 디자인 시스템, UI 토큰, 접근성         | `DESIGN.md`                                 |
 | 아키텍처, 런타임, 레이어, 통신         | `ARCHITECTURE.md`                           |

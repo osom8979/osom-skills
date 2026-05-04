@@ -19,7 +19,7 @@ keywords: ["audit", "docs", "consistency", "sync"]
 
 1. 프로젝트 루트의 ROOT 문서를 읽습니다.
    - `STRUCTURE.md` — `Structure doc`, `Code style doc`, `Rules directory`, `Plans directory`, `Required companion files`
-   - `ROLES.md`, `COMMANDS.md`, `GUARDRAILS.md`, `DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md` — 존재 여부와 미정 항목 비율
+   - `COMMANDS.md`, `GUARDRAILS.md`, `DESIGN.md`, `DATABASE.md`, `ARCHITECTURE.md` — 존재 여부와 미정 항목 비율
 2. 사용자가 사용하는 인덱스 파일(`CLAUDE.md` / `AGENTS.md` 등)이 있으면 ROOT 문서들을 올바르게 링크하는지 점검 대상에 포함합니다.
 
 ## 규칙

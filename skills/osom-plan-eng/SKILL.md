@@ -20,9 +20,9 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 1. 프로젝트 루트의 다음 ROOT 문서를 읽습니다.
    - `ARCHITECTURE.md` — 런타임·레이어·통신 모델 (이번 기능이 어디에 들어가는지 판단)
    - `STRUCTURE.md` — `Structure doc`, `Code style doc`, 디렉토리 구조
-   - `ROLES.md` — `Enabled roles`(활성 역할), `Phase dependency hints`(종속성)
 2. `STRUCTURE.md`가 가리키는 구조 문서를 추가로 읽어 현재 아키텍처·레이어 구성을 보강합니다.
-3. **추측하지 말고 실제 코드를 읽어** 영향 받을 파일·모듈을 확인합니다.
+3. 설치된 osom-skills 역할 스킬(`.claude/skills/osom-*` 또는 `.claude/agents/`)을 훑어 이번 작업에 사용 가능한 역할 후보를 파악합니다.
+4. **추측하지 말고 실제 코드를 읽어** 영향 받을 파일·모듈을 확인합니다.
 
 ## 규칙
 
@@ -30,7 +30,7 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 
 1. [기술 타당성](rules/technical-feasibility.md) — 구현 가능성과 난이도, 외부 의존성
 2. [영향 범위](rules/impact-scope.md) — 구체적 파일 경로까지 명시
-3. [필요한 역할 스킬](rules/required-roles.md) — `Enabled roles` 안에서만 선택
+3. [필요한 역할 스킬](rules/required-roles.md) — 설치된 역할 중 작업 맥락에 맞는 것 선택
 4. [종속성 / 실행 순서](rules/dependencies-and-order.md) — Phase 분리 기준
 5. [엔지니어링 리스크](rules/engineering-risks.md) — 회귀, 성능, 마이그레이션, 커버리지
 
@@ -68,4 +68,4 @@ keywords: ["plan", "engineering", "feasibility", "impact", "dependency"]
 - **이 스킬은 분석만 합니다** — 코드를 수정하지 마세요.
 - **실제 코드를 읽고 판단하세요** — 추측 기반 영향 범위는 신뢰할 수 없습니다.
 - 비즈니스/UX/DB 영향은 각각 `/osom-plan-ceo`, `/osom-plan-design`, `/osom-plan-dba`에서 다룹니다. 본인 관점에 집중하세요.
-- 활성이 아닌 역할 스킬(`ROLES.md`의 `Enabled roles`에 없음)은 제안하지 마세요.
+- 프로젝트에 설치되지 않은 역할 스킬은 제안하지 마세요. 작업 맥락과 무관한 역할도 제외합니다.
