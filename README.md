@@ -167,6 +167,12 @@ npx skills remove
 | :--- | :--- | :--- |
 | [`osom-pgtap-best-practices`](./skills/osom-pgtap-best-practices/SKILL.md) | PostgreSQL pgTAP 단위 테스트 작성·리뷰 베스트 프랙티스 (RLS 검증·픽스처·결과셋 비교·트랜잭션 격리) | pgtap, postgres, rls, test |
 
+### 언어별 코딩 컨벤션
+
+| 스킬 이름 | 주요 기능 | 주요 키워드 |
+| :--- | :--- | :--- |
+| [`osom-python-conventions`](./skills/osom-python-conventions/SKILL.md) | Python 코드 작성·리뷰 시 적용하는 19개 컨벤션(헤더/import/타입/클래스/테스트/네이밍 등) 레퍼런스 | python, convention, style, typing, testing |
+
 ## 📄 라이선스
 
 이 프로젝트는 [MIT](./LICENSE) 라이선스 하에 배포됩니다.
