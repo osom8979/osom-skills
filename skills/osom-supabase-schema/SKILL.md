@@ -40,6 +40,7 @@ postgres/
 
 - [SQL 파일 네이밍 밴드](rules/sql-naming-bands.md) — `10-tables`, `40-policies` 등 번호 밴드 컨벤션
 - [SQL 컨벤션](rules/sql-conventions.md) — 스키마 명시, `p_` 접두사, RLS 네이밍, `SECURITY DEFINER`
+- [RAISE EXCEPTION SQLSTATE](rules/raise-exception-sqlstate.md) — RPC 예외의 표준 condition name + 자주 쓰이는 SQLSTATE 참고표
 - [기존 패턴 참조](rules/follow-existing-patterns.md) — 유사 도메인 파일을 먼저 읽고 동일 포맷 유지
 - [마이그레이션 안전성](rules/migration-safety.md) — 다단계 분리, 파괴적 변경 경고
 
